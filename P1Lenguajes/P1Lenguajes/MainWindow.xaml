@@ -12,12 +12,20 @@
             <RowDefinition Height="383*"/>
         </Grid.RowDefinitions>
         <Menu DockPanel.Dock="Top" FontSize="18" >
-            <MenuItem Header="Opciones">
-                <MenuItem Header="Nuevo" />
-                <MenuItem Header="Abrir" />
-                <MenuItem Header="Guardar" />
+            <MenuItem Header="Archivo">
+                <MenuItem Header="Crear" Click="MenuItem_Click" />
+                <MenuItem Header="Abrir" Click="MenuItem_Click_1" />
+                <MenuItem Header="Eliminar" />
                 <Separator />
-                <MenuItem Header="Salir" />
+                <MenuItem Header="Cerrar Proyecto" />
+            </MenuItem>
+            <MenuItem Header="Editar">
+                <MenuItem Header="Crear" />
+                <MenuItem Header="Abrir" />
+                <MenuItem Header="Editar" />
+                <MenuItem Header="Eliminar" />
+                <Separator />
+                <MenuItem Header="Cerrar Archivos" />
             </MenuItem>
         </Menu>
         <DockPanel x:Name="panel" HorizontalAlignment="Left" Height="383" LastChildFill="False" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="794"/>
