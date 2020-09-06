@@ -28,7 +28,9 @@
                 <MenuItem Header="Cerrar Archivos" />
             </MenuItem>
         </Menu>
-        <DockPanel x:Name="panel" HorizontalAlignment="Left" Height="383" LastChildFill="False" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="794"/>
+        <DockPanel x:Name="panel" HorizontalAlignment="Left" Height="383" LastChildFill="False" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="794">
+            <TextBlock x:Name="txtEditor" Margin="100,54,0,0" TextWrapping="Wrap" Width="490" Height="267" VerticalAlignment="Top"/>
+        </DockPanel>
 
     </Grid>
 </Window>
