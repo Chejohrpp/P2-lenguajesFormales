@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P1Lenguajes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="IDE" Height="450" Width="800">
+    <Grid HorizontalAlignment="Right" Margin="0,0,-0.4,0" Width="794">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37*"/>
+            <RowDefinition Height="383*"/>
+        </Grid.RowDefinitions>
+        <Menu DockPanel.Dock="Top" FontSize="18" >
+            <MenuItem Header="Opciones">
+                <MenuItem Header="Nuevo" />
+                <MenuItem Header="Abrir" />
+                <MenuItem Header="Guardar" />
+                <Separator />
+                <MenuItem Header="Salir" />
+            </MenuItem>
+        </Menu>
+        <DockPanel x:Name="panel" HorizontalAlignment="Left" Height="383" LastChildFill="False" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="794"/>
+
     </Grid>
 </Window>

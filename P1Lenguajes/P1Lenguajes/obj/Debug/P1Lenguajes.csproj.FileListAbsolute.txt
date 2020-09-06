@@ -1,0 +1,15 @@
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\bin\Debug\P1Lenguajes.exe.config
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\bin\Debug\P1Lenguajes.exe
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\bin\Debug\P1Lenguajes.pdb
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\P1Lenguajes.csprojAssemblyReference.cache
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\MainWindow.g.cs
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\App.g.cs
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\P1Lenguajes_MarkupCompile.cache
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\P1Lenguajes_MarkupCompile.lref
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\MainWindow.baml
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\P1Lenguajes.g.resources
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\P1Lenguajes.Properties.Resources.resources
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\P1Lenguajes.csproj.GenerateResource.cache
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\P1Lenguajes.csproj.CoreCompileInputs.cache
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\P1Lenguajes.exe
+D:\DocumentosD\Git\P1 Lenguajes\P1Lenguajes\P1Lenguajes\obj\Debug\P1Lenguajes.pdb
