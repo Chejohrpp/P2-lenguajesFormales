@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using P1Lenguajes.Backend;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -34,9 +35,8 @@ namespace P1Lenguajes
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == true)
-                txtEditor.Text = File.ReadAllText(openFileDialog.FileName);
+            LeerGT leerGt = new LeerGT();
+           leerGt.buscarGT(txtEditor);
         }
     }
 }

@@ -11,7 +11,7 @@
             <RowDefinition Height="37*"/>
             <RowDefinition Height="383*"/>
         </Grid.RowDefinitions>
-        <Menu DockPanel.Dock="Top" FontSize="18" >
+        <Menu DockPanel.Dock="Top" FontSize="18" HorizontalAlignment="Right" Margin="0,0,0,383" Grid.RowSpan="2" Width="794" >
             <MenuItem Header="Archivo">
                 <MenuItem Header="Crear" Click="MenuItem_Click" />
                 <MenuItem Header="Abrir" Click="MenuItem_Click_1" />
@@ -29,7 +29,13 @@
             </MenuItem>
         </Menu>
         <DockPanel x:Name="panel" HorizontalAlignment="Left" Height="383" LastChildFill="False" Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top" Width="794">
-            <TextBlock x:Name="txtEditor" Margin="100,54,0,0" TextWrapping="Wrap" Width="490" Height="267" VerticalAlignment="Top"/>
+            <RichTextBox x:Name="txtEditor" Height="314" Margin="0,0,0,0" VerticalAlignment="Top" Width="715">
+                <FlowDocument>
+                    <Paragraph>
+                        <Run Text=""/>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
         </DockPanel>
 
     </Grid>
