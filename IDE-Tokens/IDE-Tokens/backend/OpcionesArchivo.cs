@@ -30,5 +30,13 @@ namespace IDE_Tokens.backend
 
             }
         }
+        public void guradar()
+        {
+
+        }
+        public void cerrar()
+        {
+
+        }
     }
 }
