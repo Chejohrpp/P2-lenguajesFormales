@@ -1,0 +1,10 @@
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\bin\Debug\IDE-Tokens.exe.config
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\bin\Debug\IDE-Tokens.exe
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\bin\Debug\IDE-Tokens.pdb
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\obj\Debug\IDE-Tokens.csprojAssemblyReference.cache
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\obj\Debug\IDE_Tokens.Form1.resources
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\obj\Debug\IDE_Tokens.Properties.Resources.resources
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\obj\Debug\IDE-Tokens.csproj.GenerateResource.cache
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\obj\Debug\IDE-Tokens.csproj.CoreCompileInputs.cache
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\obj\Debug\IDE-Tokens.exe
+D:\DocumentosD\Git\P1 Lenguajes\IDE-Tokens\IDE-Tokens\obj\Debug\IDE-Tokens.pdb

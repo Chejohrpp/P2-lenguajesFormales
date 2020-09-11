@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IDE_Tokens.backend;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,12 @@ namespace IDE_Tokens
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void abrirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpcionesArchivo opciones = new OpcionesArchivo();
+            opciones.abrir(txtEditor);
         }
     }
 }
