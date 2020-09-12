@@ -9,8 +9,10 @@ using System.Windows.Forms;
 
 namespace IDE_Tokens.backend
 {
+    
     class OpcionesArchivo
     {
+        string filtro = "compilador|*.gt";
         public OpcionesArchivo()
         {
 
@@ -18,7 +20,7 @@ namespace IDE_Tokens.backend
         public void abrir(RichTextBox txtEditor)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Hola|*.gt";
+            openFileDialog.Filter = filtro;
             FlowDocument flowDocument = new FlowDocument();
             //Leemos el documento
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -30,8 +32,21 @@ namespace IDE_Tokens.backend
 
             }
         }
-        public void guradar()
+        public void guardar(RichTextBox txtEditor)
         {
+  
+            
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = filtro;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter textoSave = File.CreateText(saveFileDialog.FileName);
+                textoSave.Write(txtEditor.Text);
+                textoSave.Flush();
+                textoSave.Close();               
+            }
 
         }
         public void cerrar()

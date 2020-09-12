@@ -23,6 +23,12 @@ namespace IDE_Tokens
             OpcionesArchivo opciones = new OpcionesArchivo();
             opciones.abrir(txtEditor);
         }
+
+        private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpcionesArchivo opciones = new OpcionesArchivo();
+            opciones.guardar(txtEditor);
+        }
     }
     
 }
