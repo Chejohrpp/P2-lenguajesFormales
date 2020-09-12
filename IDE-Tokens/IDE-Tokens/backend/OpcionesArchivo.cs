@@ -33,9 +33,7 @@ namespace IDE_Tokens.backend
             }
         }
         public void guardar(RichTextBox txtEditor)
-        {
-  
-            
+        {           
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = filtro;
             saveFileDialog.RestoreDirectory = true;
@@ -49,9 +47,6 @@ namespace IDE_Tokens.backend
             }
 
         }
-        public void cerrar()
-        {
 
-        }
     }
 }
