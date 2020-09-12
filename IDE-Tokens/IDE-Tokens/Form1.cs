@@ -34,6 +34,11 @@ namespace IDE_Tokens
         {
             Close();
         }
+
+        private void btnCompilar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }
