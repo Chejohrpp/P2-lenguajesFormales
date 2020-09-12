@@ -37,6 +37,8 @@
             this.txtEditor = new System.Windows.Forms.RichTextBox();
             this.btnCompilar = new System.Windows.Forms.Button();
             this.listaResult = new System.Windows.Forms.ListBox();
+            this.lblFila = new System.Windows.Forms.Label();
+            this.lbColumna = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,11 +124,32 @@
             this.listaResult.Size = new System.Drawing.Size(1238, 180);
             this.listaResult.TabIndex = 3;
             // 
+            // lblFila
+            // 
+            this.lblFila.AutoSize = true;
+            this.lblFila.Location = new System.Drawing.Point(1136, 508);
+            this.lblFila.Name = "lblFila";
+            this.lblFila.Size = new System.Drawing.Size(34, 17);
+            this.lblFila.TabIndex = 4;
+            this.lblFila.Text = "Fila:";
+            // 
+            // lbColumna
+            // 
+            this.lbColumna.AutoSize = true;
+            this.lbColumna.Location = new System.Drawing.Point(1176, 508);
+            this.lbColumna.Name = "lbColumna";
+            this.lbColumna.Size = new System.Drawing.Size(78, 17);
+            this.lbColumna.TabIndex = 5;
+            this.lbColumna.Text = "Colummna:";
+            this.lbColumna.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 761);
+            this.Controls.Add(this.lbColumna);
+            this.Controls.Add(this.lblFila);
             this.Controls.Add(this.listaResult);
             this.Controls.Add(this.btnCompilar);
             this.Controls.Add(this.txtEditor);
@@ -155,6 +178,8 @@
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
         private System.Windows.Forms.Button btnCompilar;
         private System.Windows.Forms.ListBox listaResult;
+        private System.Windows.Forms.Label lblFila;
+        private System.Windows.Forms.Label lbColumna;
     }
 }
 
