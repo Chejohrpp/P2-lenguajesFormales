@@ -80,7 +80,7 @@ namespace IDE_Tokens
             int x = position.positionX(txtEditor);
             int y = position.positionY(txtEditor);
             //int positionToSearch = txtEditor.GetCharIndexFromPosition(new Point(x,y));
-
+            //tengo que arrglar esto
 
             int xx = txtEditor.PointToScreen(new Point(x,y)).X;
 
