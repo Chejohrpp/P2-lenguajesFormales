@@ -13,7 +13,7 @@ namespace IDE_Tokens.backend
         Point p;
         public PositionCursor()
         {
-            p = new Point(Cursor.Position.X,Cursor.Position.Y);
+            p = new Point(Cursor.Position.X,760);
         }
         public int positionX(RichTextBox rchTextbox)
         {

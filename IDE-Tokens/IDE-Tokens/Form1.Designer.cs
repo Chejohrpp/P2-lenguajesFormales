@@ -50,7 +50,7 @@
             this.editarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1282, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(1300, 33);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -103,6 +103,7 @@
             this.txtEditor.TabIndex = 1;
             this.txtEditor.Text = "";
             this.txtEditor.TextChanged += new System.EventHandler(this.txtEditor_TextChanged);
+            this.txtEditor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEditor_KeyDown);
             this.txtEditor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtEditor_MouseDown);
             // 
             // btnCompilar
@@ -129,7 +130,7 @@
             // lblFila
             // 
             this.lblFila.AutoSize = true;
-            this.lblFila.Location = new System.Drawing.Point(1136, 508);
+            this.lblFila.Location = new System.Drawing.Point(994, 508);
             this.lblFila.Name = "lblFila";
             this.lblFila.Size = new System.Drawing.Size(34, 17);
             this.lblFila.TabIndex = 4;
@@ -149,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1282, 761);
+            this.ClientSize = new System.Drawing.Size(1300, 764);
             this.Controls.Add(this.lblColumna);
             this.Controls.Add(this.lblFila);
             this.Controls.Add(this.listaResult);
