@@ -38,7 +38,7 @@
             this.btnCompilar = new System.Windows.Forms.Button();
             this.listaResult = new System.Windows.Forms.ListBox();
             this.lblFila = new System.Windows.Forms.Label();
-            this.lbColumna = new System.Windows.Forms.Label();
+            this.lblColumna = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,12 +96,14 @@
             // txtEditor
             // 
             this.txtEditor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEditor.Location = new System.Drawing.Point(16, 33);
+            this.txtEditor.Location = new System.Drawing.Point(31, 37);
             this.txtEditor.Margin = new System.Windows.Forms.Padding(4);
             this.txtEditor.Name = "txtEditor";
             this.txtEditor.Size = new System.Drawing.Size(1238, 453);
             this.txtEditor.TabIndex = 1;
             this.txtEditor.Text = "";
+            this.txtEditor.TextChanged += new System.EventHandler(this.txtEditor_TextChanged);
+            this.txtEditor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtEditor_MouseDown);
             // 
             // btnCompilar
             // 
@@ -133,22 +135,22 @@
             this.lblFila.TabIndex = 4;
             this.lblFila.Text = "Fila:";
             // 
-            // lbColumna
+            // lblColumna
             // 
-            this.lbColumna.AutoSize = true;
-            this.lbColumna.Location = new System.Drawing.Point(1176, 508);
-            this.lbColumna.Name = "lbColumna";
-            this.lbColumna.Size = new System.Drawing.Size(78, 17);
-            this.lbColumna.TabIndex = 5;
-            this.lbColumna.Text = "Colummna:";
-            this.lbColumna.Click += new System.EventHandler(this.label2_Click);
+            this.lblColumna.AutoSize = true;
+            this.lblColumna.Location = new System.Drawing.Point(1176, 508);
+            this.lblColumna.Name = "lblColumna";
+            this.lblColumna.Size = new System.Drawing.Size(67, 17);
+            this.lblColumna.TabIndex = 5;
+            this.lblColumna.Text = "Columna:";
+            this.lblColumna.Click += new System.EventHandler(this.label2_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 761);
-            this.Controls.Add(this.lbColumna);
+            this.Controls.Add(this.lblColumna);
             this.Controls.Add(this.lblFila);
             this.Controls.Add(this.listaResult);
             this.Controls.Add(this.btnCompilar);
@@ -179,7 +181,7 @@
         private System.Windows.Forms.Button btnCompilar;
         private System.Windows.Forms.ListBox listaResult;
         private System.Windows.Forms.Label lblFila;
-        private System.Windows.Forms.Label lbColumna;
+        private System.Windows.Forms.Label lblColumna;
     }
 }
 
