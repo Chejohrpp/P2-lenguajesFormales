@@ -54,10 +54,19 @@ namespace IDE_Tokens.backend
             {
                 color = Color.Orange;
             }
+            if (cadena.Equals("verdadero", StringComparison.InvariantCultureIgnoreCase))
+            {
+                color = Color.Orange;
+            }
+            if (cadena.Equals("falso", StringComparison.InvariantCultureIgnoreCase))
+            {
+                color = Color.Orange;
+            }
             if (cadena.Equals("caracter", StringComparison.InvariantCultureIgnoreCase))
             {
                 color = Color.Brown;
             }
+            
         }
         public void cambiarcolor(System.Windows.Forms.RichTextBox txtEditor)
         {
@@ -71,7 +80,6 @@ namespace IDE_Tokens.backend
                 txtEditor.Find(cadena);
                 txtEditor.SelectionColor = Color.Black;
             }
-            cadena = null;            
         }
 
         public String cambiarEstado(char charEvaluar)
@@ -86,6 +94,7 @@ namespace IDE_Tokens.backend
                     estadoAnterior = estadoAhora;
                     estadoAhora = tabla[i, 2];
                     verificar();
+
                     return resultado(charEvaluar);
                 }
             }
@@ -106,9 +115,21 @@ namespace IDE_Tokens.backend
                 else
                 {
                     aceptable = false;
+                    BuscarColor();
                 }
             }
+
+            if (estadoAhora.Equals('A'))
+            {
+                reiniciar();
+            }
         }
+        private void BuscarColor()
+        {
+           
+            
+        }
+
         private void errores(char charEvaluar)
         {
             for (int i = 0; i < abecedario.Length ; i++)
@@ -143,19 +164,25 @@ namespace IDE_Tokens.backend
         public void funcionesTransicion()
         {
             
-            tabla[0, 0] = 'A'; tabla[0, 1] = ' '; tabla[0,2] = 'B';
-            tabla[1, 0] = 'A'; tabla[1, 1] = '1'; tabla[1, 2] = 'D';
+            tabla[0, 0] = 'A'; tabla[0, 1] = ';'; tabla[0,2] = 'A';
+            tabla[1, 0] = 'A'; tabla[1, 1] = ' '; tabla[1, 2] = 'A';
 
             tabla[2, 0] = 'B'; tabla[2, 1] = '0'; tabla[2, 2] = 'C';
             tabla[3, 0] = 'B'; tabla[3, 1] = '1'; tabla[3, 2] = 'D';
 
-            tabla[4, 0] = 'C'; tabla[4, 1] = '0'; tabla[4, 2] = 'C';
+            tabla[4, 0] = 'C'; tabla[4, 1] = 'Ñ'; tabla[4, 2] = 'C';
             tabla[5, 0] = 'C'; tabla[5, 1] = '1'; tabla[5, 2] = 'B';
 
             tabla[6, 0] = 'D'; tabla[6, 1] = '0'; tabla[6, 2] = 'C';
             tabla[7, 0] = 'D'; tabla[7, 1] = '1'; tabla[7, 2] = 'D';
 
 
+        }
+
+        private void reiniciar()
+        {
+            cadena = null;
+            estadoAhora = 'A';
         }
     }
 }
