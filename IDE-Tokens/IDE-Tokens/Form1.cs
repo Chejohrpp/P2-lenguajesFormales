@@ -127,6 +127,7 @@ namespace IDE_Tokens
         private void txtEditor_KeyPress(object sender, KeyPressEventArgs e)
         {
 
+            lblColumna.Text = e.KeyChar.ToString();
         }
 
         private void txtEditor_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

@@ -38,8 +38,27 @@ namespace IDE_Tokens.backend
                     color = Color.Green;
                 }
             }
+            if (cadena.Equals("entero", StringComparison.InvariantCultureIgnoreCase))
+            {
+                color = Color.Purple;
+            }
+            if (cadena.Equals("decimal", StringComparison.InvariantCultureIgnoreCase))
+            {
+                color = Color.SkyBlue;
+            }
+            if (cadena.Equals("cadena", StringComparison.InvariantCultureIgnoreCase))
+            {
+                color = Color.Gray;
+            }
+            if (cadena.Equals("booleano", StringComparison.InvariantCultureIgnoreCase))
+            {
+                color = Color.Orange;
+            }
+            if (cadena.Equals("caracter", StringComparison.InvariantCultureIgnoreCase))
+            {
+                color = Color.Brown;
+            }
         }
-
         public void cambiarcolor(System.Windows.Forms.RichTextBox txtEditor)
         {
             if (aceptable)
@@ -57,29 +76,24 @@ namespace IDE_Tokens.backend
 
         public String cambiarEstado(char charEvaluar)
         {
-            if (error == false)
+            errores(charEvaluar);
+
+            for (int i = 0; i < cantEstados; i++)
             {
-                errores(charEvaluar);
-                if (error == false)
+                if (tabla[i, 0].Equals(estadoAhora) && tabla[i, 1].Equals(charEvaluar))
                 {
-                    for (int i = 0; i < cantEstados; i++)
-                    {
-                        if (tabla[i, 0].Equals(estadoAhora) && tabla[i, 1].Equals(charEvaluar))
-                        {
-                            cadena = cadena + charEvaluar;
-                            estadoAnterior = estadoAhora;
-                            estadoAhora = tabla[i, 2];
-                            verificar();
-                            return resultado(charEvaluar);
-                        }
-                    }
-                    error = true;
-                    mensajeError = "No hay tansicion con " + charEvaluar;
-                    return mensajeError;
+                    cadena = cadena + charEvaluar;
+                    estadoAnterior = estadoAhora;
+                    estadoAhora = tabla[i, 2];
+                    verificar();
+                    return resultado(charEvaluar);
                 }
-                return mensajeError;
             }
-            return null;
+
+            error = true;
+            mensajeError = "No hay tansicion con " + charEvaluar;
+            return mensajeError;
+
         }
         private void verificar()
         {
@@ -129,7 +143,7 @@ namespace IDE_Tokens.backend
         public void funcionesTransicion()
         {
             
-            tabla[0, 0] = 'A'; tabla[0, 1] = '0'; tabla[0,2] = 'B';
+            tabla[0, 0] = 'A'; tabla[0, 1] = ' '; tabla[0,2] = 'B';
             tabla[1, 0] = 'A'; tabla[1, 1] = '1'; tabla[1, 2] = 'D';
 
             tabla[2, 0] = 'B'; tabla[2, 1] = '0'; tabla[2, 2] = 'C';
