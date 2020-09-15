@@ -104,11 +104,13 @@
             this.txtEditor.Text = "";
             this.txtEditor.TextChanged += new System.EventHandler(this.txtEditor_TextChanged);
             this.txtEditor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEditor_KeyDown);
+            this.txtEditor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEditor_KeyPress);
             this.txtEditor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtEditor_MouseDown);
+            this.txtEditor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtEditor_PreviewKeyDown);
             // 
             // btnCompilar
             // 
-            this.btnCompilar.Location = new System.Drawing.Point(16, 493);
+            this.btnCompilar.Location = new System.Drawing.Point(31, 497);
             this.btnCompilar.Name = "btnCompilar";
             this.btnCompilar.Size = new System.Drawing.Size(170, 46);
             this.btnCompilar.TabIndex = 2;
@@ -119,7 +121,6 @@
             // listaResult
             // 
             this.listaResult.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.listaResult.Enabled = false;
             this.listaResult.FormattingEnabled = true;
             this.listaResult.ItemHeight = 16;
             this.listaResult.Location = new System.Drawing.Point(16, 566);
