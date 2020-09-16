@@ -48,7 +48,7 @@ namespace IDE_Tokens
             listaResult.Items.Clear();
             String cadena = txtEditor.Text;
             Automata automata = new Automata();
-            LinkedList<String> resul;
+            
 
             for (int i = 0; i < cadena.Length; i++)
             {
@@ -57,18 +57,10 @@ namespace IDE_Tokens
             }
 
 
-            resul = automata.getResult();
-            while (resul.Count != 0)
+            LinkedList<String> resul = automata.getResult();
+            foreach (String respuestas in resul)
             {
-                if (resul.First != null)
-                {
-                    listaResult.Items.Add(resul.First);
-                    resul.RemoveFirst();
-                }
-                else
-                {
-                    resul.RemoveFirst();
-                }
+                listaResult.Items.Add(respuestas);
             }
         }
         private void btnCompilar_Click(object sender, EventArgs e)
@@ -84,6 +76,7 @@ namespace IDE_Tokens
         private void txtEditor_TextChanged(object sender, EventArgs e)
         {
             //compilar();
+            
         }
         
 
@@ -102,6 +95,7 @@ namespace IDE_Tokens
             int yy = txtEditor.PointToClient(new Point(x, y)).Y;            
             lblColumna.Text = star.ToString();
             lblFila.Text = xx.ToString();*/
+
             
         }
 
@@ -121,6 +115,8 @@ namespace IDE_Tokens
         {
 
             lblColumna.Text = e.KeyChar.ToString();
+            int ascci = Encoding.ASCII.GetBytes(e.KeyChar.ToString())[0];
+            lblFila.Text = ascci.ToString();
         }
 
         private void txtEditor_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
