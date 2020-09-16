@@ -12,18 +12,18 @@ namespace IDE_Tokens.backend
 {
     class Automata
     {
-        private static int cantEstados=8;
+        private static int cantEstados=50;
         private char[] abecedario = { '0', '1' };
         private char estadoAhora = 'A';
         private char estadoAnterior = 'A';
-        private char[] estadoAceptacion = {'A','B','D','F','G','H','I','K','L','M','N','O','P','Q','R','T','V','W','Ñ','Z'};
+        private char[] estadoAceptacion = {'B','D','F','E','G','H','I','K','L','M','N','O','P','Q','R','T','V','W','Ñ','Z'};
         private Char[,] tabla = new Char[cantEstados, 3];
         private Boolean aceptable = false;
         private Boolean error = false;
         private String mensajeError;
         private String cadena;
         private Color color = Color.Black;
-        private LinkedList<String> result;
+        private LinkedList<String> result = new LinkedList<string>();
         public Automata()
         {
             funcionesTransicion();
@@ -69,12 +69,13 @@ namespace IDE_Tokens.backend
             }
             return Color.Black;
         }
-        public void cambiarcolor(System.Windows.Forms.RichTextBox txtEditor)
+        public void cambiarcolor(int inicio,System.Windows.Forms.RichTextBox txtEditor)
         {
             if (aceptable)
             {
                 BuscarColor();
-                txtEditor.Find(cadena);
+                txtEditor.Select(inicio, cadena.Length);
+                //txtEditor.Find(cadena);
                 txtEditor.SelectionColor = color;
             }
             else
@@ -83,17 +84,13 @@ namespace IDE_Tokens.backend
                 txtEditor.SelectionColor = Color.Black;
             }
 
-            if (estadoAhora.Equals('A') || estadoAhora.Equals('@'))
-            {
-                reiniciar();                
-            }
-
         }
 
-        public void cambiarEstado(char charEvaluar, System.Windows.Forms.RichTextBox txtEditor)
+        public void cambiarEstado(char charEvaluar, System.Windows.Forms.RichTextBox txtEditor, int inicio)
         {
             char auxChar = charEvaluar;
-            errores(charEvaluar);
+            //errores(charEvaluar);
+            excepciones();
 
             if (char.IsNumber(charEvaluar))
             {
@@ -127,12 +124,12 @@ namespace IDE_Tokens.backend
             if (estadoAhora.Equals('A') && error == false) 
             {
                 reiniciar();
-                cambiarEstado(charEvaluar, txtEditor);
+                cambiarEstado(charEvaluar, txtEditor,inicio);
             }
             else
             {
                 cadena = cadena + charEvaluar;
-                cambiarcolor(txtEditor);
+                cambiarcolor(inicio,txtEditor);
             }
             if (error)
             {
@@ -167,11 +164,27 @@ namespace IDE_Tokens.backend
         }
         private void BuscarColor()
         {
-            if (true)
+            if (estadoAhora.Equals('B'))
             {
-
+                color = Color.DarkViolet;
             }
-            
+            else if (estadoAhora.Equals('O'))
+            {
+                color = Color.DarkBlue;
+            }
+            else if (estadoAhora.Equals('H'))
+            {
+                color = palabrasReservadas();
+            }
+            else if (estadoAhora.Equals('E'))
+            {
+                color = Color.Gray;
+            }
+            else if (estadoAhora.Equals('F'))
+            {
+                color = Color.Gray;
+            }
+
         }
 
         private void errores(char charEvaluar)
@@ -236,9 +249,21 @@ namespace IDE_Tokens.backend
             tabla[23, 0] = 'B'; tabla[23, 1] = ' '; tabla[23, 2] = 'A';
 
 
+            tabla[26, 0] = 'E'; tabla[26, 1] = '"'; tabla[26, 2] = 'F';
 
 
 
+
+
+
+        }
+        private void excepciones()
+        {
+            if (estadoAhora.Equals('F'))
+            {
+                reiniciar();
+                estadoAhora = 'A';
+            }
         }
 
         private void reiniciar()

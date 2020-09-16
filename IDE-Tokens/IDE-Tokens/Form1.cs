@@ -43,9 +43,9 @@ namespace IDE_Tokens
         }
 
         //compilamos el codigo
-        private void btnCompilar_Click(object sender, EventArgs e)
+        private void compilar()
         {
-            listaResult.Items.Clear();            
+            listaResult.Items.Clear();
             String cadena = txtEditor.Text;
             Automata automata = new Automata();
             LinkedList<String> resul;
@@ -53,7 +53,7 @@ namespace IDE_Tokens
             for (int i = 0; i < cadena.Length; i++)
             {
                 char caracter = cadena[i];
-                automata.cambiarEstado(caracter, txtEditor);             
+                automata.cambiarEstado(caracter, txtEditor, i);
             }
 
 
@@ -71,33 +71,19 @@ namespace IDE_Tokens
                 }
             }
         }
-
+        private void btnCompilar_Click(object sender, EventArgs e)
+        {
+            compilar();
+        }
+        
         private void label2_Click(object sender, EventArgs e)
         {
 
         }
 
         private void txtEditor_TextChanged(object sender, EventArgs e)
-        {           
-
-           /* listaResult.Items.Clear();                     
-            String cadena = txtEditor.Text;
-            Automata automata = new Automata();
-
-            for (int i = 0; i < cadena.Length; i++)
-            {
-                char caracter = cadena[i];
-                String resul = automata.cambiarEstado(caracter);
-                if (resul != null)
-                {
-                    listaResult.Items.Add(resul);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            automata.cambiarcolor(cadena, txtEditor);  */         
+        {
+            //compilar();
         }
         
 
