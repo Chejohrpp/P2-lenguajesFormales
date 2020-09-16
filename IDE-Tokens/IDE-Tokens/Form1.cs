@@ -48,21 +48,28 @@ namespace IDE_Tokens
             listaResult.Items.Clear();            
             String cadena = txtEditor.Text;
             Automata automata = new Automata();
+            LinkedList<String> resul;
 
             for (int i = 0; i < cadena.Length; i++)
             {
                 char caracter = cadena[i];
-                String resul = automata.cambiarEstado(caracter);
-                automata.cambiarcolor(txtEditor);
-                if (resul != null)
+                automata.cambiarEstado(caracter, txtEditor);             
+            }
+
+
+            resul = automata.getResult();
+            while (resul.Count != 0)
+            {
+                if (resul.First != null)
                 {
-                    listaResult.Items.Add(resul);
+                    listaResult.Items.Add(resul.First);
+                    resul.RemoveFirst();
                 }
                 else
                 {
-                    break;
+                    resul.RemoveFirst();
                 }
-            }            
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)

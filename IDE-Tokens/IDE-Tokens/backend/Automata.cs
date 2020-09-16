@@ -16,62 +16,64 @@ namespace IDE_Tokens.backend
         private char[] abecedario = { '0', '1' };
         private char estadoAhora = 'A';
         private char estadoAnterior = 'A';
-        private char[] estadoAceptacion = {'B','D','F','G','H','I','K','L','M','N','O','P','Q','R','T','V','W','Ñ','Z'};
+        private char[] estadoAceptacion = {'A','B','D','F','G','H','I','K','L','M','N','O','P','Q','R','T','V','W','Ñ','Z'};
         private Char[,] tabla = new Char[cantEstados, 3];
         private Boolean aceptable = false;
         private Boolean error = false;
         private String mensajeError;
         private String cadena;
-        private Color color;
+        private Color color = Color.Black;
+        private LinkedList<String> result;
         public Automata()
         {
             funcionesTransicion();
             
         }
-        private void palabrasReservadas()
+        private Color palabrasReservadas()
         {
            String[] palabrasReservadas = {"SI", "SINO,SINO_SI,MENTRAS,HACER,DESDE,HASTA,INCREMENTO" };
             foreach (String palabra in palabrasReservadas)
             {
                 if (cadena.Equals(palabra, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    color = Color.Green;
+                    return Color.Green;
                 }
             }
             if (cadena.Equals("entero", StringComparison.InvariantCultureIgnoreCase))
             {
-                color = Color.Purple;
+                return Color.Purple;
             }
             if (cadena.Equals("decimal", StringComparison.InvariantCultureIgnoreCase))
             {
-                color = Color.SkyBlue;
+                return Color.SkyBlue;
             }
             if (cadena.Equals("cadena", StringComparison.InvariantCultureIgnoreCase))
             {
-                color = Color.Gray;
+                return Color.Gray;
             }
             if (cadena.Equals("booleano", StringComparison.InvariantCultureIgnoreCase))
             {
-                color = Color.Orange;
+                return Color.Orange;
             }
             if (cadena.Equals("verdadero", StringComparison.InvariantCultureIgnoreCase))
             {
-                color = Color.Orange;
+                return Color.Orange;
             }
             if (cadena.Equals("falso", StringComparison.InvariantCultureIgnoreCase))
             {
-                color = Color.Orange;
+                return Color.Orange;
             }
             if (cadena.Equals("caracter", StringComparison.InvariantCultureIgnoreCase))
             {
-                color = Color.Brown;
+                return Color.Brown;
             }
-            
+            return Color.Black;
         }
         public void cambiarcolor(System.Windows.Forms.RichTextBox txtEditor)
         {
             if (aceptable)
             {
+                BuscarColor();
                 txtEditor.Find(cadena);
                 txtEditor.SelectionColor = color;
             }
@@ -80,9 +82,15 @@ namespace IDE_Tokens.backend
                 txtEditor.Find(cadena);
                 txtEditor.SelectionColor = Color.Black;
             }
+
+            if (estadoAhora.Equals('A') || estadoAhora.Equals('@'))
+            {
+                reiniciar();                
+            }
+
         }
 
-        public String cambiarEstado(char charEvaluar)
+        public void cambiarEstado(char charEvaluar, System.Windows.Forms.RichTextBox txtEditor)
         {
             char auxChar = charEvaluar;
             errores(charEvaluar);
@@ -98,24 +106,47 @@ namespace IDE_Tokens.backend
                 {
                     auxChar = 'a';
                 }
-            }
-
-            cadena = cadena + charEvaluar;
+            }           
 
             for (int i = 0; i < cantEstados; i++)
             {
                 if (tabla[i, 0].Equals(estadoAhora) && tabla[i, 1].Equals(auxChar))
-                {                    
+                {
+                    error = false;
                     estadoAnterior = estadoAhora;
                     estadoAhora = tabla[i, 2];
                     verificar();
-                    return resultado(charEvaluar);
+                    result.AddLast(resultado(charEvaluar));
+                    break;
+                }
+                else
+                {
+                    error = true;
                 }
             }
+            if (estadoAhora.Equals('A') && error == false) 
+            {
+                reiniciar();
+                cambiarEstado(charEvaluar, txtEditor);
+            }
+            else
+            {
+                cadena = cadena + charEvaluar;
+                cambiarcolor(txtEditor);
+            }
+            if (error)
+            {
+                if (estadoAhora.Equals('A'))
+                {
+                }
+                else
+                {
+                    mensajeError = "No hay tansicion con " + charEvaluar;
+                    result.AddLast(mensajeError);
+                }
+                
+            }
 
-            error = true;
-            mensajeError = "No hay tansicion con " + charEvaluar;
-            return mensajeError;
 
         }
         private void verificar()
@@ -124,8 +155,7 @@ namespace IDE_Tokens.backend
             {
                 if (estadoAhora.Equals(estadoAceptacion[i]))
                 {
-                    aceptable = true;
-                    BuscarColor();
+                    aceptable = true;                    
                     break;
                 }
                 else
@@ -133,10 +163,6 @@ namespace IDE_Tokens.backend
                     aceptable = false;
                     
                 }
-            }
-            if (estadoAhora.Equals('A'))
-            {
-                reiniciar();
             }
         }
         private void BuscarColor()
@@ -182,6 +208,7 @@ namespace IDE_Tokens.backend
 
         public void funcionesTransicion()
         {
+         
             
             tabla[0, 0] = 'A'; tabla[0, 1] = '0'; tabla[0,2] = 'B';
             tabla[1, 0] = 'A'; tabla[1, 1] = '"'; tabla[1, 2] = 'E';
@@ -198,9 +225,17 @@ namespace IDE_Tokens.backend
             tabla[12, 0] = 'A'; tabla[12, 1] = '|'; tabla[12, 2] = 'S';
             tabla[13, 0] = 'A'; tabla[13, 1] = '&'; tabla[13, 2] = 'U';
             tabla[14, 0] = 'A'; tabla[14, 1] = '/'; tabla[14, 2] = 'W';
-            tabla[15, 0] = 'A'; tabla[15, 1] = ' '; tabla[15, 2] = 'A';
 
             tabla[16, 0] = 'B'; tabla[16, 1] = '0'; tabla[16, 2] = 'B';
+            tabla[17, 0] = 'B'; tabla[17, 1] = '+'; tabla[17, 2] = 'A';
+            tabla[18, 0] = 'B'; tabla[18, 1] = '-'; tabla[18, 2] = 'A';
+            tabla[19, 0] = 'B'; tabla[19, 1] = '&'; tabla[19, 2] = 'A';
+            tabla[20, 0] = 'B'; tabla[20, 1] = '('; tabla[20, 2] = 'A';
+            tabla[21, 0] = 'B'; tabla[21, 1] = ')'; tabla[21, 2] = 'A';
+            tabla[22, 0] = 'B'; tabla[22, 1] = '+'; tabla[22, 2] = 'A';
+            tabla[23, 0] = 'B'; tabla[23, 1] = ' '; tabla[23, 2] = 'A';
+
+
 
 
 
@@ -209,7 +244,11 @@ namespace IDE_Tokens.backend
         private void reiniciar()
         {
             cadena = null;
-            estadoAhora = 'A';
+            //estadoAhora = 'A';
+        }
+        public LinkedList<String> getResult()
+        {
+            return result;
         }
     }
 }
