@@ -59,11 +59,17 @@ namespace IDE_Tokens
             
 
             LinkedList<String> resul = automata.getResult();
+            if (resul.Count == 0)
+            {
+                listaResult.Items.Add("No hay problemas");
+            }
             foreach (String respuestas in resul)
             {
                 listaResult.Items.Add(respuestas);
             }
+            
         }
+
         private void btnCompilar_Click(object sender, EventArgs e)
         {
             compilar();

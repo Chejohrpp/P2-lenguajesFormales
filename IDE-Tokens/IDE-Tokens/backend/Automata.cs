@@ -12,8 +12,8 @@ namespace IDE_Tokens.backend
 {
     class Automata
     {
-        private static int cantEstados=50;
-        private char[] abecedario = { '0', '1' };
+        private static int cantEstados=45;
+        private char[] abecedario = { '0', 'a','"','(', '>','+','-','*','/','<','!','|','&',')',';' ,' ','_','=','.'};
         private char estadoAhora = 'A';
         private char estadoAnterior = 'A';
         private char[] estadoAceptacion = {'B','D','F','E','G','H','J','K','L','N','O','Q','W','Ñ','Z','X','Y'};
@@ -25,6 +25,7 @@ namespace IDE_Tokens.backend
         private Color color = Color.Black;
         private LinkedList<String> result = new LinkedList<string>();
         int inicio = 0;
+        int lineas=1;
         public Automata()
         {
             funcionesTransicion();
@@ -86,15 +87,16 @@ namespace IDE_Tokens.backend
             }
 
         }
-
         public void cambiarEstado(char charEvaluar, System.Windows.Forms.RichTextBox txtEditor, int inicio)
         {
             
-            char auxChar = charEvaluar;
-            //errores(charEvaluar);
+            char auxChar = charEvaluar;            
             excepciones();
             int ascci = Encoding.ASCII.GetBytes(charEvaluar.ToString())[0];
-
+            if (ascci == 10)
+            {
+                lineas++;
+            }
             if (estadoAhora.Equals('A'))
             {
                 this.inicio = inicio;
@@ -115,8 +117,8 @@ namespace IDE_Tokens.backend
                     auxChar = 'a';
                 }
                 
-            }           
-
+            }
+            
             for (int i = 0; i < cantEstados; i++)
             {
                 if (tabla[i, 0].Equals(estadoAhora) && tabla[i, 1].Equals(auxChar))
@@ -127,7 +129,6 @@ namespace IDE_Tokens.backend
                     verificar();
                     String resultad = resultado(charEvaluar);
                     //result.AddLast(resultad);
-
                     break;
                 }
                 else
@@ -155,16 +156,19 @@ namespace IDE_Tokens.backend
             if (estadoAhora.Equals('Ñ') && ascci == 10)
             {
                 reiniciar();
-            }
+            }            
 
             if (error)
             {
+                
                 if (estadoAhora.Equals('A'))
                 {
-                    mensajeError = "No hay tansicion con " + charEvaluar;
+                    //mensajeError = "No hay tansicion con " + charEvaluar;
+                    errores(charEvaluar, auxChar);
                 }
                 else
                 {
+                    
                 }
                 
             }
@@ -264,22 +268,26 @@ namespace IDE_Tokens.backend
             }
             
         }
-
-        private void errores(char charEvaluar)
+        private void errores(char charEvaluar, char auxChar)
         {
             for (int i = 0; i < abecedario.Length ; i++)
             {
-                if (charEvaluar.Equals(abecedario[i]))
+                if (auxChar.Equals(abecedario[i]) || Encoding.ASCII.GetBytes(charEvaluar.ToString())[0] == 10 )
                 {
                     error = false;
                     break;
                 }
-
                 else
                 {
-                    error = true;
-                    mensajeError = "El " + charEvaluar + " No existe en el abecedario";
+                    error = true;                    
                 }
+            }
+
+            if (error)
+            {
+                mensajeError = "Problema en la linea: "+ lineas +" El " + charEvaluar + " No existe en el abecedario";
+                //mensajeError = "Problemas con " + charEvaluar;
+                result.AddLast(mensajeError);
             }
 
         }
@@ -296,23 +304,19 @@ namespace IDE_Tokens.backend
             return mensajeError;
             
         }
-
         public void funcionesTransicion()
         {
-         
+            
             
             tabla[0, 0] = 'A'; tabla[0, 1] = '0'; tabla[0,2] = 'B';
             tabla[1, 0] = 'A'; tabla[1, 1] = '"'; tabla[1, 2] = 'E';
             tabla[2, 0] = 'A'; tabla[2, 1] = 'a'; tabla[2, 2] = 'G';
-            tabla[3, 0] = 'A'; tabla[3, 1] = '('; tabla[3, 2] = 'N';
-            
+            tabla[3, 0] = 'A'; tabla[3, 1] = '('; tabla[3, 2] = 'N';            
             tabla[4, 0] = 'A'; tabla[4, 1] = '>'; tabla[4, 2] = 'L';
             tabla[5, 0] = 'A'; tabla[5, 1] = '<'; tabla[5, 2] = 'L';
             tabla[6, 0] = 'A'; tabla[6, 1] = '!'; tabla[6, 2] = 'L';
-
             tabla[7, 0] = 'A'; tabla[7, 1] = '='; tabla[7, 2] = 'J';
-            tabla[8, 0] = 'A'; tabla[8, 1] = ';'; tabla[8, 2] = 'K';
-
+            tabla[8, 0] = 'A'; tabla[8, 1] = ';'; tabla[8, 2] = 'K';    
             tabla[9, 0] = 'A'; tabla[9, 1] = '*'; tabla[9, 2] = 'N';
             tabla[10, 0] = 'A'; tabla[10, 1] = '+'; tabla[10, 2] = 'O';
             tabla[11, 0] = 'A'; tabla[11, 1] = '-'; tabla[11, 2] = 'Q';
