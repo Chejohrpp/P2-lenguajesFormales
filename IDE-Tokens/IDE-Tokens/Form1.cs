@@ -54,9 +54,7 @@ namespace IDE_Tokens
             {
                 char caracter = cadena[i];
                 automata.cambiarEstado(caracter, txtEditor, i);                
-            }
-
-            
+            }           
 
             LinkedList<String> resul = automata.getResult();
             if (resul.Count == 0)
@@ -119,10 +117,6 @@ namespace IDE_Tokens
 
         private void txtEditor_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-            lblColumna.Text = e.KeyChar.ToString();
-            int ascci = Encoding.ASCII.GetBytes(e.KeyChar.ToString())[0];
-            lblFila.Text = ascci.ToString();
         }
 
         private void txtEditor_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

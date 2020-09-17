@@ -35,7 +35,6 @@
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtEditor = new System.Windows.Forms.RichTextBox();
-            this.btnCompilar = new System.Windows.Forms.Button();
             this.listaResult = new System.Windows.Forms.ListBox();
             this.lblFila = new System.Windows.Forms.Label();
             this.lblColumna = new System.Windows.Forms.Label();
@@ -82,8 +81,8 @@
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(167, 30);
-            this.cerrarToolStripMenuItem.Text = "Cerrar";
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(259, 30);
+            this.cerrarToolStripMenuItem.Text = "Cerrar el programa";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
             // editarToolStripMenuItem
@@ -107,16 +106,6 @@
             this.txtEditor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEditor_KeyPress);
             this.txtEditor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.txtEditor_MouseDown);
             this.txtEditor.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtEditor_PreviewKeyDown);
-            // 
-            // btnCompilar
-            // 
-            this.btnCompilar.Location = new System.Drawing.Point(31, 497);
-            this.btnCompilar.Name = "btnCompilar";
-            this.btnCompilar.Size = new System.Drawing.Size(170, 46);
-            this.btnCompilar.TabIndex = 2;
-            this.btnCompilar.Text = "Compilar";
-            this.btnCompilar.UseVisualStyleBackColor = true;
-            this.btnCompilar.Click += new System.EventHandler(this.btnCompilar_Click);
             // 
             // listaResult
             // 
@@ -155,7 +144,6 @@
             this.Controls.Add(this.lblColumna);
             this.Controls.Add(this.lblFila);
             this.Controls.Add(this.listaResult);
-            this.Controls.Add(this.btnCompilar);
             this.Controls.Add(this.txtEditor);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -180,7 +168,6 @@
         private System.Windows.Forms.RichTextBox txtEditor;
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
-        private System.Windows.Forms.Button btnCompilar;
         private System.Windows.Forms.ListBox listaResult;
         private System.Windows.Forms.Label lblFila;
         private System.Windows.Forms.Label lblColumna;
