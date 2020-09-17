@@ -93,6 +93,7 @@ namespace IDE_Tokens.backend
             char auxChar = charEvaluar;
             //errores(charEvaluar);
             excepciones();
+            int ascci = Encoding.ASCII.GetBytes(charEvaluar.ToString())[0];
 
             if (estadoAhora.Equals('A'))
             {
@@ -104,8 +105,7 @@ namespace IDE_Tokens.backend
                 auxChar = '0';
             }
             else
-            {
-                int ascci = Encoding.ASCII.GetBytes(charEvaluar.ToString())[0];
+            {           
                 if ((ascci >= 65 && ascci <= 90) || (ascci >= 97 && ascci <= 122) || ascci == 164 || ascci == 165 || ascci == 63)
                 {
                     auxChar = 'a';
@@ -114,10 +114,7 @@ namespace IDE_Tokens.backend
                 {
                     auxChar = 'a';
                 }
-                if (estadoAhora.Equals('Ñ') && ascci == 13)
-                {
-                    reiniciar();
-                }
+                
             }           
 
             for (int i = 0; i < cantEstados; i++)
@@ -129,7 +126,7 @@ namespace IDE_Tokens.backend
                     estadoAhora = tabla[i, 2];
                     verificar();
                     String resultad = resultado(charEvaluar);
-                    result.AddFirst(resultad);
+                    result.AddLast(resultad);
 
                     break;
                 }
@@ -153,6 +150,11 @@ namespace IDE_Tokens.backend
             {
                 cadena = cadena + charEvaluar;
                 cambiarcolor(this.inicio,txtEditor);
+            }
+
+            if (estadoAhora.Equals('Ñ') && ascci == 10)
+            {
+                reiniciar();
             }
 
             if (error)
@@ -197,7 +199,7 @@ namespace IDE_Tokens.backend
             }
             else if (estadoAhora.Equals('G'))
             {
-                color = Color.Orange;
+                color = Color.Brown;
             }
             else if (estadoAhora.Equals('H'))
             {
@@ -378,7 +380,6 @@ namespace IDE_Tokens.backend
                 reiniciar();
             }
         }
-
         private void reiniciar()
         {
             cadena = null;
