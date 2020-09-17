@@ -190,7 +190,7 @@ namespace IDE_Tokens.backend
                     
                 }
             }
-        }
+        }   
         private void BuscarColor()
         {
             if (estadoAhora.Equals('B'))
