@@ -19,6 +19,7 @@ namespace IDE_Tokens
 {
     public partial class Form1 : Form
     {
+        LinkedList<String> resul = new LinkedList<string>();
         public Form1()
         {
             InitializeComponent();
@@ -54,9 +55,9 @@ namespace IDE_Tokens
             {
                 char caracter = cadena[i];
                 automata.cambiarEstado(caracter, txtEditor, i);                
-            }           
+            }
 
-            LinkedList<String> resul = automata.getResult();
+             resul = automata.getResult();
             if (resul.Count == 0)
             {
                 listaResult.Items.Add("No hay problemas");
@@ -124,6 +125,11 @@ namespace IDE_Tokens
 
         }
 
+        private void exportarElLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpcionesArchivo opciones = new OpcionesArchivo();
+            opciones.exportarLog(resul);
+        }
     }
     
 }

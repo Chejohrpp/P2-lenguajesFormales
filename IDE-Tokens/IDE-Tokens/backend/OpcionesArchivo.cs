@@ -13,6 +13,7 @@ namespace IDE_Tokens.backend
     class OpcionesArchivo
     {
         string filtro = "compilador|*.gt";
+        string filtroLog = "Log|*.gtE";
         public OpcionesArchivo()
         {
 
@@ -47,6 +48,28 @@ namespace IDE_Tokens.backend
             }
 
         }
+        public void exportarLog(LinkedList<String> lista)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = filtroLog;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter textoSave = File.CreateText(saveFileDialog.FileName);
+                if (lista.Count == 0)
+                {                    
+                    textoSave.Write("No hay problemas");
+                }
+                foreach (String respuestas in lista)
+                {
+                    textoSave.Write(respuestas + "\n");
+                }                
+                textoSave.Flush();
+                textoSave.Close();
+            }
+        }
+
 
     }
 }

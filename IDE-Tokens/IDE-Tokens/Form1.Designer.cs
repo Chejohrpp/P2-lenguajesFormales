@@ -33,11 +33,11 @@
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtEditor = new System.Windows.Forms.RichTextBox();
             this.listaResult = new System.Windows.Forms.ListBox();
             this.lblFila = new System.Windows.Forms.Label();
             this.lblColumna = new System.Windows.Forms.Label();
+            this.exportarElLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,8 +45,7 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.archioToolStripMenuItem,
-            this.editarToolStripMenuItem});
+            this.archioToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1300, 33);
@@ -58,6 +57,7 @@
             this.archioToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.abrirToolStripMenuItem,
             this.guardarToolStripMenuItem,
+            this.exportarElLogToolStripMenuItem,
             this.cerrarToolStripMenuItem});
             this.archioToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archioToolStripMenuItem.Name = "archioToolStripMenuItem";
@@ -67,15 +67,15 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(167, 30);
-            this.abrirToolStripMenuItem.Text = "Abrir";
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
+            this.abrirToolStripMenuItem.Text = "Abrir un proyecto";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.abrirToolStripMenuItem_Click);
             // 
             // guardarToolStripMenuItem
             // 
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
-            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(167, 30);
-            this.guardarToolStripMenuItem.Text = "Guardar";
+            this.guardarToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
+            this.guardarToolStripMenuItem.Text = "Guardar el proyecto";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
             // cerrarToolStripMenuItem
@@ -84,13 +84,6 @@
             this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(259, 30);
             this.cerrarToolStripMenuItem.Text = "Cerrar el programa";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
-            // 
-            // editarToolStripMenuItem
-            // 
-            this.editarToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(75, 29);
-            this.editarToolStripMenuItem.Text = "Editar";
             // 
             // txtEditor
             // 
@@ -136,6 +129,13 @@
             this.lblColumna.Text = "Columna:";
             this.lblColumna.Click += new System.EventHandler(this.label2_Click);
             // 
+            // exportarElLogToolStripMenuItem
+            // 
+            this.exportarElLogToolStripMenuItem.Name = "exportarElLogToolStripMenuItem";
+            this.exportarElLogToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
+            this.exportarElLogToolStripMenuItem.Text = "Exportar el Log";
+            this.exportarElLogToolStripMenuItem.Click += new System.EventHandler(this.exportarElLogToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -164,13 +164,13 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem archioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.RichTextBox txtEditor;
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
         private System.Windows.Forms.ListBox listaResult;
         private System.Windows.Forms.Label lblFila;
         private System.Windows.Forms.Label lblColumna;
+        private System.Windows.Forms.ToolStripMenuItem exportarElLogToolStripMenuItem;
     }
 }
 
