@@ -32,12 +32,10 @@
             this.archioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportarElLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtEditor = new System.Windows.Forms.RichTextBox();
             this.listaResult = new System.Windows.Forms.ListBox();
-            this.lblFila = new System.Windows.Forms.Label();
-            this.lblColumna = new System.Windows.Forms.Label();
-            this.exportarElLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,10 +76,17 @@
             this.guardarToolStripMenuItem.Text = "Guardar el proyecto";
             this.guardarToolStripMenuItem.Click += new System.EventHandler(this.guardarToolStripMenuItem_Click);
             // 
+            // exportarElLogToolStripMenuItem
+            // 
+            this.exportarElLogToolStripMenuItem.Name = "exportarElLogToolStripMenuItem";
+            this.exportarElLogToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
+            this.exportarElLogToolStripMenuItem.Text = "Exportar el Log";
+            this.exportarElLogToolStripMenuItem.Click += new System.EventHandler(this.exportarElLogToolStripMenuItem_Click);
+            // 
             // cerrarToolStripMenuItem
             // 
             this.cerrarToolStripMenuItem.Name = "cerrarToolStripMenuItem";
-            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(259, 30);
+            this.cerrarToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
             this.cerrarToolStripMenuItem.Text = "Cerrar el programa";
             this.cerrarToolStripMenuItem.Click += new System.EventHandler(this.cerrarToolStripMenuItem_Click);
             // 
@@ -105,44 +110,16 @@
             this.listaResult.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.listaResult.FormattingEnabled = true;
             this.listaResult.ItemHeight = 16;
-            this.listaResult.Location = new System.Drawing.Point(16, 566);
+            this.listaResult.Location = new System.Drawing.Point(31, 516);
             this.listaResult.Name = "listaResult";
             this.listaResult.Size = new System.Drawing.Size(1238, 180);
             this.listaResult.TabIndex = 3;
-            // 
-            // lblFila
-            // 
-            this.lblFila.AutoSize = true;
-            this.lblFila.Location = new System.Drawing.Point(994, 508);
-            this.lblFila.Name = "lblFila";
-            this.lblFila.Size = new System.Drawing.Size(34, 17);
-            this.lblFila.TabIndex = 4;
-            this.lblFila.Text = "Fila:";
-            // 
-            // lblColumna
-            // 
-            this.lblColumna.AutoSize = true;
-            this.lblColumna.Location = new System.Drawing.Point(1176, 508);
-            this.lblColumna.Name = "lblColumna";
-            this.lblColumna.Size = new System.Drawing.Size(67, 17);
-            this.lblColumna.TabIndex = 5;
-            this.lblColumna.Text = "Columna:";
-            this.lblColumna.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // exportarElLogToolStripMenuItem
-            // 
-            this.exportarElLogToolStripMenuItem.Name = "exportarElLogToolStripMenuItem";
-            this.exportarElLogToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
-            this.exportarElLogToolStripMenuItem.Text = "Exportar el Log";
-            this.exportarElLogToolStripMenuItem.Click += new System.EventHandler(this.exportarElLogToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 764);
-            this.Controls.Add(this.lblColumna);
-            this.Controls.Add(this.lblFila);
             this.Controls.Add(this.listaResult);
             this.Controls.Add(this.txtEditor);
             this.Controls.Add(this.menuStrip1);
@@ -168,8 +145,6 @@
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
         private System.Windows.Forms.ListBox listaResult;
-        private System.Windows.Forms.Label lblFila;
-        private System.Windows.Forms.Label lblColumna;
         private System.Windows.Forms.ToolStripMenuItem exportarElLogToolStripMenuItem;
     }
 }

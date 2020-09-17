@@ -104,18 +104,6 @@ namespace IDE_Tokens
             
         }
 
-        private void grapichs()
-        {
-            using (Graphics g = Graphics.FromHwnd(txtEditor.Handle))
-            {
-                SizeF size = g.MeasureString(txtEditor.Text.Substring(0, txtEditor.SelectionStart), txtEditor.Font);
-
-                Point pt = txtEditor.PointToScreen(new Point((int)size.Width, (int)size.Height));
-                lblFila.Text = "Manual: " + pt.ToString();
-
-            }
-        }
-
         private void txtEditor_KeyPress(object sender, KeyPressEventArgs e)
         {
         }
