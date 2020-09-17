@@ -20,6 +20,7 @@ namespace IDE_Tokens.backend
         private Char[,] tabla = new Char[cantEstados, 3];
         private Boolean aceptable = false;
         private Boolean error = false;
+        private Boolean noCont2VecesError = false;
         private String mensajeError;
         private String cadena;
         private Color color = Color.Black;
@@ -93,7 +94,7 @@ namespace IDE_Tokens.backend
             char auxChar = charEvaluar;            
             excepciones();
             int ascci = Encoding.ASCII.GetBytes(charEvaluar.ToString())[0];
-            if (ascci == 10)
+            if (ascci == 10 && noCont2VecesError == false)
             {
                 lineas++;
             }
@@ -145,6 +146,7 @@ namespace IDE_Tokens.backend
             if (estadoAhora.Equals('A') && error == false) 
             {
                 reiniciar();
+                noCont2VecesError = true;
                 cambiarEstado(charEvaluar, txtEditor,inicio);
             }
             else
@@ -161,7 +163,7 @@ namespace IDE_Tokens.backend
             if (error)
             {
                 
-                if (estadoAhora.Equals('A'))
+                if (estadoAhora.Equals('A') && noCont2VecesError == false)
                 {
                     //mensajeError = "No hay tansicion con " + charEvaluar;
                     errores(charEvaluar, auxChar);
@@ -173,6 +175,7 @@ namespace IDE_Tokens.backend
                 
             }
 
+            noCont2VecesError = false;
 
         }
         private void verificar()
