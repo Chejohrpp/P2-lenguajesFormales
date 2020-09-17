@@ -126,7 +126,7 @@ namespace IDE_Tokens.backend
                     estadoAhora = tabla[i, 2];
                     verificar();
                     String resultad = resultado(charEvaluar);
-                    result.AddLast(resultad);
+                    //result.AddLast(resultad);
 
                     break;
                 }

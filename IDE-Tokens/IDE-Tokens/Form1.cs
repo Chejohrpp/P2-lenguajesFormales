@@ -53,9 +53,10 @@ namespace IDE_Tokens
             for (int i = 0; i < cadena.Length; i++)
             {
                 char caracter = cadena[i];
-                automata.cambiarEstado(caracter, txtEditor, i);
+                automata.cambiarEstado(caracter, txtEditor, i);                
             }
 
+            
 
             LinkedList<String> resul = automata.getResult();
             foreach (String respuestas in resul)
@@ -75,10 +76,10 @@ namespace IDE_Tokens
 
         private void txtEditor_TextChanged(object sender, EventArgs e)
         {
-            //compilar();
-            
-        }
-        
+            compilar();
+            txtEditor.Select(txtEditor.Text.Length, txtEditor.Text.Length);
+                
+        }       
 
         private void txtEditor_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
@@ -95,7 +96,6 @@ namespace IDE_Tokens
             int yy = txtEditor.PointToClient(new Point(x, y)).Y;            
             lblColumna.Text = star.ToString();
             lblFila.Text = xx.ToString();*/
-
             
         }
 
