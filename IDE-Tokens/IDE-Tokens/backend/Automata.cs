@@ -32,6 +32,7 @@ namespace IDE_Tokens.backend
             funcionesTransicion();
             
         }
+        //aqui estan las palabras que tienen un color en especifico
         private Color palabrasReservadas()
         {
             String cadena1 = cadena.Trim();
@@ -73,6 +74,8 @@ namespace IDE_Tokens.backend
             }
             return Color.Black;
         }
+
+        //se cambian todos los colores que tiene la cadena creada y se configura en el RichTextBox
         public void cambiarcolor(int inicio,System.Windows.Forms.RichTextBox txtEditor)
         {
             if (aceptable)
@@ -88,27 +91,30 @@ namespace IDE_Tokens.backend
             }
 
         }
+
+        //evalua el caracter siguiente y cambia el estado al que pertenece
         public void cambiarEstado(char charEvaluar, System.Windows.Forms.RichTextBox txtEditor, int inicio)
         {
             
-            char auxChar = charEvaluar;            
+            char auxChar = charEvaluar; //usaremos esta variable para evaluar todoas las posibles opciones 
             excepciones();
-            int ascci = Encoding.ASCII.GetBytes(charEvaluar.ToString())[0];
+            int ascci = Encoding.ASCII.GetBytes(charEvaluar.ToString())[0];//encontramos el assci del caracter
             if (ascci == 10 && noCont2VecesError == false)
             {
-                lineas++;
+                lineas++;//con esto contaremos cuantas lineas tiene el documento
             }
             if (estadoAhora.Equals('A'))
             {
                 this.inicio = inicio;
             }
-
+            //verificamos si es un numero
             if (char.IsNumber(charEvaluar))
             {
                 auxChar = '0';
             }
             else
             {           
+                //vemos si el caracter evualuado esta entre el rando de A-Z o a-z
                 if ((ascci >= 65 && ascci <= 90) || (ascci >= 97 && ascci <= 122) || ascci == 164 || ascci == 165 || ascci == 63)
                 {
                     auxChar = 'a';
@@ -122,6 +128,7 @@ namespace IDE_Tokens.backend
             
             for (int i = 0; i < cantEstados; i++)
             {
+                //buscamos en la tabla de transicion el estado a donde pertenece el caracter
                 if (tabla[i, 0].Equals(estadoAhora) && tabla[i, 1].Equals(auxChar))
                 {
                     error = false;
@@ -137,22 +144,22 @@ namespace IDE_Tokens.backend
                     error = true;
                 }
             }
-
+            //si no encontramos una transicion en el estado que estamos y los estados son diferentes A,E y X
             if (estadoAhora != 'A' && error == true && estadoAhora != 'E' && estadoAhora != 'X' && estadoAhora != 'Ñ')
             {
                 estadoAhora = 'A'; error = false;
             }
-
+            
             if (estadoAhora.Equals('A') && error == false) 
             {
                 reiniciar();
-                noCont2VecesError = true;
-                cambiarEstado(charEvaluar, txtEditor,inicio);
+                noCont2VecesError = true;//hace que no contemos 2 veces el error por si lo hay
+                cambiarEstado(charEvaluar, txtEditor,inicio);//evaluamos de nuevo el caracter
             }
             else
             {
                 cadena = cadena + charEvaluar;
-                cambiarcolor(this.inicio,txtEditor);
+                cambiarcolor(this.inicio,txtEditor);//cambiamos el color de la cadena
             }
 
             if (estadoAhora.Equals('Ñ') && ascci == 10)
@@ -162,7 +169,7 @@ namespace IDE_Tokens.backend
 
             if (error)
             {
-                
+                //vemos si hay errores y los agregamos en la lista de errores
                 if (estadoAhora.Equals('A') && noCont2VecesError == false)
                 {
                     //mensajeError = "No hay tansicion con " + charEvaluar;
@@ -175,9 +182,10 @@ namespace IDE_Tokens.backend
                 
             }
 
-            noCont2VecesError = false;
+            noCont2VecesError = false;//reiniciamos el contador de error
 
         }
+        //veririficamos si estamos en un estado de aceptacion
         private void verificar()
         {
             for (int i = 0; i < estadoAceptacion.Length; i++)
@@ -194,6 +202,7 @@ namespace IDE_Tokens.backend
                 }
             }
         }   
+        //buscamos el color del dato que estamos evaluando
         private void BuscarColor()
         {
             if (estadoAhora.Equals('B'))
@@ -271,6 +280,7 @@ namespace IDE_Tokens.backend
             }
             
         }
+        //verificamos si hay errores
         private void errores(char charEvaluar, char auxChar)
         {
             for (int i = 0; i < abecedario.Length ; i++)
@@ -294,6 +304,7 @@ namespace IDE_Tokens.backend
             }
 
         }
+        //creamos una cadena mostrando como se cambia entre estados con el caracter evaluado
         private String resultado(char charEvaluar)
         {
             if (error == false)
@@ -307,6 +318,7 @@ namespace IDE_Tokens.backend
             return mensajeError;
             
         }
+        //aqui estan todas las funciones de transicion
         public void funcionesTransicion()
         {
             
@@ -376,6 +388,7 @@ namespace IDE_Tokens.backend
 
 
         }
+        //hay estados que se comportan diferente y necesitan un reinicio forzado, aqui se almacenan
         private void excepciones()
         {
             if (estadoAhora.Equals('F'))
@@ -387,11 +400,13 @@ namespace IDE_Tokens.backend
                 reiniciar();
             }
         }
+        //regresamos al estado A y borramos todo lo que tenia la cadena
         private void reiniciar()
         {
             cadena = null;
             estadoAhora = 'A';
         }
+        //devuelve la lista de errores
         public LinkedList<String> getResult()
         {
             return result;

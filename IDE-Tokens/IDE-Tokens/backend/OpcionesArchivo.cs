@@ -18,6 +18,7 @@ namespace IDE_Tokens.backend
         {
 
         }
+        //este metodo sirve para abrir el nuevo archivo con extension .gt
         public void abrir(RichTextBox txtEditor)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -33,6 +34,7 @@ namespace IDE_Tokens.backend
 
             }
         }
+        //este metodo sirve para guardar el codigo de la caja de texto 
         public void guardar(RichTextBox txtEditor)
         {           
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -48,6 +50,7 @@ namespace IDE_Tokens.backend
             }
 
         }
+        //este metodo sirve para exportar los errores que puede contener el codigo del RichTextBox
         public void exportarLog(LinkedList<String> lista)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
