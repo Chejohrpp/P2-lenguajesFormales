@@ -36,7 +36,7 @@ namespace IDE_Tokens.backend
         private Color palabrasReservadas()
         {
             String cadena1 = cadena.Trim();
-           String[] palabrasReservadas = {"SI", "SINO","SINO_SI","MIENTRAS","HACER","DESDE","HASTA","INCREMENTO" };
+           String[] palabrasReservadas = {"SI", "SINO","SINO_SI","MIENTRAS","HACER","DESDE","HASTA","INCREMENTO","principal","imprimir","leer","escribir" };
             foreach (String palabra in palabrasReservadas)
             {
                 if (cadena1.Equals(palabra, StringComparison.InvariantCultureIgnoreCase))
