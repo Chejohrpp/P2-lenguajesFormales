@@ -13,7 +13,7 @@ namespace IDE_Tokens.backend
     class Automata
     {
         private static int cantEstados=45;
-        private char[] abecedario = { '0', 'a','"','(', '>','+','-','*','/','<','!','|','&',')',';' ,' ','_','=','.'};
+        private char[] abecedario = { '0', 'a', '"', '(', '>', '+', '-', '*', '/', '<', '!', '|', '&', ')', ';', ' ', '_', '=', '.', '}', '{',',' };
         private char estadoAhora = 'A';
         private char estadoAnterior = 'A';
         private char[] estadoAceptacion = {'B','D','F','E','G','H','J','K','L','N','O','Q','W','Ñ','Z','X','Y'};
