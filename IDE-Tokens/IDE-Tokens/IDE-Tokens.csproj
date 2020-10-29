@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="backend\Automata.cs" />
+    <Compile Include="backend\Estructura.cs" />
     <Compile Include="backend\OpcionesArchivo.cs" />
     <Compile Include="backend\PositionCursor.cs" />
     <Compile Include="Form1.cs">

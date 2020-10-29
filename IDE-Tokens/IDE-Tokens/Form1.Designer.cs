@@ -61,6 +61,7 @@
             this.archioToolStripMenuItem.Name = "archioToolStripMenuItem";
             this.archioToolStripMenuItem.Size = new System.Drawing.Size(90, 29);
             this.archioToolStripMenuItem.Text = "Archivo";
+            this.archioToolStripMenuItem.Click += new System.EventHandler(this.archioToolStripMenuItem_Click);
             // 
             // abrirToolStripMenuItem
             // 

@@ -118,6 +118,11 @@ namespace IDE_Tokens
             OpcionesArchivo opciones = new OpcionesArchivo();
             opciones.exportarLog(resul);
         }
+
+        private void archioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }
