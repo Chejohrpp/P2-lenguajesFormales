@@ -20,6 +20,7 @@ namespace IDE_Tokens
     public partial class Form1 : Form
     {
         LinkedList<String> resul = new LinkedList<string>();
+        LinkedList<String> resulTokens = new LinkedList<string>();
         public Form1()
         {
             InitializeComponent();
@@ -47,6 +48,7 @@ namespace IDE_Tokens
         private void compilar()
         {
             listaResult.Items.Clear();
+            listSintactico.Items.Clear();
             String cadena = txtEditor.Text;
             Automata automata = new Automata();
             
@@ -57,7 +59,7 @@ namespace IDE_Tokens
                 automata.cambiarEstado(caracter, txtEditor, i);                
             }
 
-             resul = automata.getResult();
+            resul = automata.getResult();
             if (resul.Count == 0)
             {
                 listaResult.Items.Add("No hay problemas");
@@ -66,7 +68,19 @@ namespace IDE_Tokens
             {
                 listaResult.Items.Add(respuestas);
             }
-            
+
+            resulTokens = automata.getCadenaTokens();
+            if (resulTokens.Count == 0)
+            {
+                listSintactico.Items.Add("No hay problemas");
+            }
+            foreach (String respuestas in resulTokens)
+            {
+                listSintactico.Items.Add(respuestas);
+            }
+
+
+
         }
 
         private void btnCompilar_Click(object sender, EventArgs e)
@@ -120,6 +134,11 @@ namespace IDE_Tokens
         }
 
         private void archioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

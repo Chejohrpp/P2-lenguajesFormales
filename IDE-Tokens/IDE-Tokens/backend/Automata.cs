@@ -12,7 +12,7 @@ namespace IDE_Tokens.backend
 {
     class Automata
     {
-        private static int cantEstados=45;
+        private static int cantEstados=49;
         private char[] abecedario = { '0', 'a', '"', '(', '>', '+', '-', '*', '/', '<', '!', '|', '&', ')', ';', ' ', '_', '=', '.', '}', '{',',' };
         private char estadoAhora = 'A';
         private char estadoAnterior = 'A';
@@ -25,6 +25,7 @@ namespace IDE_Tokens.backend
         private String cadena;
         private Color color = Color.Black;
         private LinkedList<String> result = new LinkedList<string>();
+        private LinkedList<String> cadenaTokens = new LinkedList<string>();
         int inicio = 0;
         int lineas=1;
         public Automata()
@@ -41,6 +42,7 @@ namespace IDE_Tokens.backend
             {
                 if (cadena1.Equals(palabra, StringComparison.InvariantCultureIgnoreCase))
                 {
+
                     return Color.Green;
                 }
             }
@@ -144,12 +146,36 @@ namespace IDE_Tokens.backend
                     error = true;
                 }
             }
+
+            //para agregar los tokens
+            String token;
+            if (cadenaTokens.Count == 0)
+            {
+                token = estadoAhora.ToString();
+                cadenaTokens.AddLast(token);
+            }
+            else if (estadoAhora != 'A' && error == true && estadoAhora != 'E' && estadoAhora != 'X' && estadoAhora != 'Ñ')
+            {
+                token = estadoAhora.ToString();
+                cadenaTokens.AddLast(token);
+            }
+            else
+            {
+                cadenaTokens.RemoveLast();
+                token = estadoAhora.ToString();
+                cadenaTokens.AddLast(token);
+
+            }
+
+
             //si no encontramos una transicion en el estado que estamos y los estados son diferentes A,E y X
             if (estadoAhora != 'A' && error == true && estadoAhora != 'E' && estadoAhora != 'X' && estadoAhora != 'Ñ')
             {
                 estadoAhora = 'A'; error = false;
             }
             
+
+
             if (estadoAhora.Equals('A') && error == false) 
             {
                 reiniciar();
@@ -165,7 +191,9 @@ namespace IDE_Tokens.backend
             if (estadoAhora.Equals('Ñ') && ascci == 10)
             {
                 reiniciar();
-            }            
+            } 
+            
+
 
             if (error)
             {
@@ -182,6 +210,9 @@ namespace IDE_Tokens.backend
                 
             }
 
+
+
+            Estructura estructura = new Estructura(cadenaTokens);
             noCont2VecesError = false;//reiniciamos el contador de error
 
         }
@@ -340,14 +371,19 @@ namespace IDE_Tokens.backend
             tabla[14, 0] = 'A'; tabla[14, 1] = '/'; tabla[14, 2] = 'W'; 
             tabla[15, 0] = 'A'; tabla[15, 1] = ')'; tabla[15, 2] = 'N';
 
+            tabla[45, 0] = 'A'; tabla[45, 1] = '{'; tabla[45, 2] = 'N';
+            tabla[46, 0] = 'A'; tabla[46, 1] = '}'; tabla[46, 2] = 'N';
+            tabla[47, 0] = 'A'; tabla[47, 1] = '_'; tabla[47, 2] = 'H';
+            tabla[48, 0] = 'A'; tabla[48, 1] = ','; tabla[48, 2] = 'N';//48 es el mas grande
+
             tabla[16, 0] = 'B'; tabla[16, 1] = '0'; tabla[16, 2] = 'B';
-            tabla[17, 0] = 'B'; tabla[17, 1] = '+'; tabla[17, 2] = 'A';
-            tabla[18, 0] = 'B'; tabla[18, 1] = '-'; tabla[18, 2] = 'A';
-            tabla[19, 0] = 'B'; tabla[19, 1] = '&'; tabla[19, 2] = 'A';
-            tabla[20, 0] = 'B'; tabla[20, 1] = '('; tabla[20, 2] = 'A';
-            tabla[21, 0] = 'B'; tabla[21, 1] = ')'; tabla[21, 2] = 'A';
-            tabla[22, 0] = 'B'; tabla[22, 1] = '+'; tabla[22, 2] = 'A';
-            tabla[23, 0] = 'B'; tabla[23, 1] = ' '; tabla[23, 2] = 'A';
+            //tabla[17, 0] = 'B'; tabla[17, 1] = '+'; tabla[17, 2] = 'A';
+            //tabla[18, 0] = 'B'; tabla[18, 1] = '-'; tabla[18, 2] = 'A';
+            //tabla[19, 0] = 'B'; tabla[19, 1] = '&'; tabla[19, 2] = 'A';
+            //tabla[20, 0] = 'B'; tabla[20, 1] = '('; tabla[20, 2] = 'A';
+            //tabla[21, 0] = 'B'; tabla[21, 1] = ')'; tabla[21, 2] = 'A';
+            //tabla[22, 0] = 'B'; tabla[22, 1] = '+'; tabla[22, 2] = 'A';
+            //tabla[23, 0] = 'B'; tabla[23, 1] = ' '; tabla[23, 2] = 'A';
             tabla[24, 0] = 'B'; tabla[24, 1] = '.'; tabla[24, 2] = 'C';
 
             tabla[25, 0] = 'C'; tabla[25, 1] = '0'; tabla[25, 2] = 'D';
@@ -362,8 +398,7 @@ namespace IDE_Tokens.backend
 
             tabla[30, 0] = 'H'; tabla[30, 1] = '0'; tabla[30, 2] = 'H';
             tabla[31, 0] = 'H'; tabla[31, 1] = 'a'; tabla[31, 2] = 'H';
-            tabla[32, 0] = 'H'; tabla[32, 1] = ' '; tabla[32, 2] = 'A';
-            tabla[32, 0] = 'H'; tabla[32, 1] = '_'; tabla[32, 2] = 'H';
+            //tabla[32, 0] = 'H'; tabla[32, 1] = '_'; tabla[32, 2] = 'H';
 
             tabla[33, 0] = 'J'; tabla[33, 1] = '='; tabla[33, 2] = 'N';
 
@@ -410,6 +445,11 @@ namespace IDE_Tokens.backend
         public LinkedList<String> getResult()
         {
             return result;
+        }
+
+        public LinkedList<String> getCadenaTokens()
+        {
+            return cadenaTokens;
         }
     }
 }

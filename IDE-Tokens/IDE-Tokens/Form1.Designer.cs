@@ -36,6 +36,10 @@
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtEditor = new System.Windows.Forms.RichTextBox();
             this.listaResult = new System.Windows.Forms.ListBox();
+            this.listSintactico = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.generarArbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +60,7 @@
             this.abrirToolStripMenuItem,
             this.guardarToolStripMenuItem,
             this.exportarElLogToolStripMenuItem,
+            this.generarArbolToolStripMenuItem,
             this.cerrarToolStripMenuItem});
             this.archioToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.archioToolStripMenuItem.Name = "archioToolStripMenuItem";
@@ -111,16 +116,54 @@
             this.listaResult.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.listaResult.FormattingEnabled = true;
             this.listaResult.ItemHeight = 16;
-            this.listaResult.Location = new System.Drawing.Point(31, 516);
+            this.listaResult.Location = new System.Drawing.Point(31, 514);
             this.listaResult.Name = "listaResult";
-            this.listaResult.Size = new System.Drawing.Size(1238, 180);
+            this.listaResult.Size = new System.Drawing.Size(1238, 84);
             this.listaResult.TabIndex = 3;
+            // 
+            // listSintactico
+            // 
+            this.listSintactico.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.listSintactico.FormattingEnabled = true;
+            this.listSintactico.ItemHeight = 16;
+            this.listSintactico.Location = new System.Drawing.Point(31, 621);
+            this.listSintactico.Name = "listSintactico";
+            this.listSintactico.Size = new System.Drawing.Size(1238, 180);
+            this.listSintactico.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(28, 601);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Errores sintacticos";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 494);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 17);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Errores Lexicos";
+            // 
+            // generarArbolToolStripMenuItem
+            // 
+            this.generarArbolToolStripMenuItem.Name = "generarArbolToolStripMenuItem";
+            this.generarArbolToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
+            this.generarArbolToolStripMenuItem.Text = "Generar Arbol";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1300, 764);
+            this.ClientSize = new System.Drawing.Size(1300, 818);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.listSintactico);
             this.Controls.Add(this.listaResult);
             this.Controls.Add(this.txtEditor);
             this.Controls.Add(this.menuStrip1);
@@ -147,6 +190,10 @@
         private System.Windows.Forms.ToolStripMenuItem cerrarToolStripMenuItem;
         private System.Windows.Forms.ListBox listaResult;
         private System.Windows.Forms.ToolStripMenuItem exportarElLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generarArbolToolStripMenuItem;
+        private System.Windows.Forms.ListBox listSintactico;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
