@@ -59,7 +59,7 @@ namespace IDE_Tokens
                 automata.cambiarEstado(caracter, txtEditor, i);                
             }
 
-            resul = automata.getResult();
+            resul = automata.getCadenaTokens();
             if (resul.Count == 0)
             {
                 listaResult.Items.Add("No hay problemas");
@@ -69,7 +69,8 @@ namespace IDE_Tokens
                 listaResult.Items.Add(respuestas);
             }
 
-            resulTokens = automata.getCadenaTokens();
+
+            resulTokens = automata.getResultEstructura();
             if (resulTokens.Count == 0)
             {
                 listSintactico.Items.Add("No hay problemas");
@@ -79,6 +80,7 @@ namespace IDE_Tokens
                 listSintactico.Items.Add(respuestas);
             }
 
+            
 
 
         }
