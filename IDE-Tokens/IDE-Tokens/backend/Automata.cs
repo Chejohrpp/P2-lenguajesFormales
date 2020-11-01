@@ -27,6 +27,7 @@ namespace IDE_Tokens.backend
         private LinkedList<String> result = new LinkedList<string>();
         private LinkedList<String> cadenaTokens = new LinkedList<string>();
         private LinkedList<String> resultEstructura = new LinkedList<string>();
+        private String codigoArbol = null;
         int inicio = 0;
         int lineas=1;
         public Automata()
@@ -293,6 +294,7 @@ namespace IDE_Tokens.backend
             {
                 Estructura estructura = new Estructura(cadenaTokens);
                 resultEstructura = estructura.getAutomata();
+                codigoArbol = estructura.codigoArbol();
             }
             
          
@@ -549,5 +551,10 @@ namespace IDE_Tokens.backend
         {
             return resultEstructura;
         }
+        public String CodigoArbol()
+        {
+            return this.codigoArbol;
+        }
+
     }
 }

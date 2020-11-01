@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace IDE_Tokens.backend
 {
@@ -16,6 +17,11 @@ namespace IDE_Tokens.backend
         private LinkedList<String> automataPila = new LinkedList<string>();
 
         private LinkedList<String> tokensArbol = new LinkedList<string>();
+        private LinkedList<String> tokensArbolAnterior = new LinkedList<string>();//se guardan los tokens de un nivel atras
+        private int posTokenCambiar = 1; //sirve para conocer la posicion de la hoja en el arbol
+        String hojasArbol = null;
+        String todasHojas = null;
+        String todasApuntarHojas = null;
 
         private String[,] tabla = new String[cantCambiosMatriz, 4];
         private String estadoActual = "A";
@@ -26,8 +32,7 @@ namespace IDE_Tokens.backend
             this.cadenaTokens = new LinkedList<string> (cadenaTokens);
             matriz();
             automataPila.AddLast(estadoActual);
-            tokensArbol.AddLast(estadoActual);
-
+            tokensArbolAnterior.AddLast(estadoActual);
             cantTokens = this.cadenaTokens.Count;
             verificarPila();
 
@@ -41,7 +46,19 @@ namespace IDE_Tokens.backend
                 {
                     cadenaTokens.RemoveFirst();
                     automataPila.RemoveLast();
+                    try
+                    {
+                        if (tokensArbolAnterior.Count != 0)
+                        {
+                            tokensArbolAnterior.RemoveLast();//para generar el arbol
+                        }                        
+                    }
+                    catch(Exception e)
+                    {
+                        Console.WriteLine(e.Message +" posible null en tokedndsArbolAnterior");
+                    }                    
                     cantTokens = cadenaTokens.Count;
+                    posTokenCambiar++;//para cambiar el num de los tokens
                     verificarPila();
                 }
                 else
@@ -52,9 +69,9 @@ namespace IDE_Tokens.backend
                             tabla[i, 2].Equals(cadenaTokens.First.Value))
                         {
                             
-
                             automataPila.RemoveLast();
                             separarNodos(tabla[i, 3]);
+                            generarArbol();
                             cantTokens = cadenaTokens.Count;
 
                             break;
@@ -107,11 +124,14 @@ namespace IDE_Tokens.backend
                 {
                     nodoCompuesto = nodoCompuesto + newNodo.ToString();
                     String nodoInvertido = invertir(nodoCompuesto);
-                    automataPila.AddLast(nodoInvertido);
+                    automataPila.AddLast(nodoInvertido);                    
+                    tokensArbol.AddLast(nodoInvertido);// lo necesitamos agregar tokens tmp para el arbol
                     nodoCompuesto = null;
                 }
                 
             }
+
+            
         }
         private static string invertir(string cadena)
         {
@@ -138,6 +158,21 @@ namespace IDE_Tokens.backend
         {
             return automataPila;
         }
+        //significado de cada caracter:
+        //principal-@		64
+        //si - Ç   			128
+        //sino- ü			129
+        //sino_si- é           	130
+        //mientras- â 	131
+        //hacer- ä		132
+        //desde-à		133
+        //hasta-å		134
+        //incremento-ç	135
+        //imprimir-ê	136	
+        //leer-ë		137
+        //id -è 138
+        //cont- ï  139
+        //verdadero/falso - ì 141
         private void matriz()
         {
             tabla[0, 1] = "A";  tabla[0, 2] = "@"; tabla[0, 3] = "@(){B}";
@@ -239,7 +274,44 @@ namespace IDE_Tokens.backend
         }
         private void generarArbol()
         {
+            try
+            {
+                if (tokensArbolAnterior.Count != 0)
+                {
+                    String crearHoja = posTokenCambiar + " [label=\" " + tokensArbolAnterior.Last.Value + " \"]; ";
+                    todasHojas = todasHojas + crearHoja;
+                    int cont = 1;
+                    foreach (String token in tokensArbol.Reverse())
+                    {
+                        crearHoja = posTokenCambiar + cont + " [label=\" " + token + " \" ]; ";
+                        todasHojas = todasHojas + crearHoja;
+                        cont++;
+                    }
 
+                    for (int i = 0; i < tokensArbol.Count; i++)
+                    {
+                        String apuntarHojas = posTokenCambiar + " -> " + (posTokenCambiar + 1 + i) + "; ";
+                        todasApuntarHojas = todasApuntarHojas + apuntarHojas;
+                    }
+                    posTokenCambiar += tokensArbol.Count + 1;//+1 puede cambiar
+
+                    tokensArbolAnterior = new LinkedList<string>(tokensArbol);
+                    tokensArbol.Clear();
+                }
+                
+            }
+            catch(Exception e)
+            {
+
+            }
+            
+            
+        }
+        public String codigoArbol()
+        {
+            hojasArbol = todasHojas + todasApuntarHojas;
+            String codigoArbol = "digraph G {"+hojasArbol+"}";
+            return codigoArbol;
         }
     }
 }

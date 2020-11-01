@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -21,6 +22,7 @@ namespace IDE_Tokens
     {
         LinkedList<String> resul = new LinkedList<string>();
         LinkedList<String> resulTokens = new LinkedList<string>();
+        String codigoArbol = null;
         public Form1()
         {
             InitializeComponent();
@@ -59,16 +61,26 @@ namespace IDE_Tokens
                 automata.cambiarEstado(caracter, txtEditor, i);                
             }
 
-            resul = automata.getResult();
-            if (resul.Count == 0)
-            {
-                listaResult.Items.Add("No hay problemas");
-            }
-            foreach (String respuestas in resul)
-            {
-                listaResult.Items.Add(respuestas);
-            }
+            //resul = automata.getResult();
+            //if (resul.Count == 0)
+            //{
+            //    listaResult.Items.Add("No hay problemas");
+            //}
+            //foreach (String respuestas in resul)
+            //{
+            //    listaResult.Items.Add(respuestas);
+            //}
 
+            codigoArbol = automata.CodigoArbol();
+            try
+            {
+                listaResult.Items.Add(codigoArbol);
+            }
+            catch (Exception e)
+            {
+
+            }
+            
 
             resulTokens = automata.getResultEstructura();
             if (resulTokens.Count == 0)
@@ -80,12 +92,14 @@ namespace IDE_Tokens
                 listSintactico.Items.Add("Hay errores");
 
             }
+
+
             //foreach (String respuestas in resulTokens)
             //{
             //    listSintactico.Items.Add(respuestas);
             //}
 
-            
+
 
 
         }
@@ -148,6 +162,12 @@ namespace IDE_Tokens
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void generarArbolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpcionesArchivo opcionesArchivo = new OpcionesArchivo();
+            opcionesArchivo.generarArbolImage(codigoArbol);
         }
     }
     

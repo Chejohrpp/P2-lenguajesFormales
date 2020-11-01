@@ -14,6 +14,7 @@ namespace IDE_Tokens.backend
     {
         string filtro = "compilador|*.gt";
         string filtroLog = "Log|*.gtE";
+        string filtroTexto = "texto|*.txt";
         public OpcionesArchivo()
         {
 
@@ -72,7 +73,43 @@ namespace IDE_Tokens.backend
                 textoSave.Close();
             }
         }
+        public void generarArbolImage(String codigoArbol)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = filtroTexto;
+            saveFileDialog.RestoreDirectory = true;
+            String fileName=null;
 
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                StreamWriter textoSave = File.CreateText(saveFileDialog.FileName);
+                textoSave.Write(codigoArbol);
+                textoSave.Flush();
+                textoSave.Close();
+                fileName = saveFileDialog.FileName;               
+                //Console.WriteLine(fileName);
+                generarImage(fileName);
+                
+            }
+
+
+
+        }
+        private static void generarImage(String fileNamePath)
+        {
+            try
+            {
+                var comando = String.Format("dot -Tpng {0} -o {1}", fileNamePath, fileNamePath.Replace(".txt", ".png"));
+                var ejecutarComando = new System.Diagnostics.ProcessStartInfo("cmd", "/C " + comando);
+                var proceso = new System.Diagnostics.Process();
+                proceso.StartInfo = ejecutarComando;
+                proceso.Start();
+                proceso.WaitForExit();
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
 
     }
 }

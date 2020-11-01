@@ -33,13 +33,13 @@
             this.abrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportarElLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generarArbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtEditor = new System.Windows.Forms.RichTextBox();
             this.listaResult = new System.Windows.Forms.ListBox();
             this.listSintactico = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.generarArbolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +88,13 @@
             this.exportarElLogToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
             this.exportarElLogToolStripMenuItem.Text = "Exportar el Log";
             this.exportarElLogToolStripMenuItem.Click += new System.EventHandler(this.exportarElLogToolStripMenuItem_Click);
+            // 
+            // generarArbolToolStripMenuItem
+            // 
+            this.generarArbolToolStripMenuItem.Name = "generarArbolToolStripMenuItem";
+            this.generarArbolToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
+            this.generarArbolToolStripMenuItem.Text = "Generar Arbol";
+            this.generarArbolToolStripMenuItem.Click += new System.EventHandler(this.generarArbolToolStripMenuItem_Click);
             // 
             // cerrarToolStripMenuItem
             // 
@@ -149,12 +156,6 @@
             this.label2.Size = new System.Drawing.Size(106, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "Errores Lexicos";
-            // 
-            // generarArbolToolStripMenuItem
-            // 
-            this.generarArbolToolStripMenuItem.Name = "generarArbolToolStripMenuItem";
-            this.generarArbolToolStripMenuItem.Size = new System.Drawing.Size(266, 30);
-            this.generarArbolToolStripMenuItem.Text = "Generar Arbol";
             // 
             // Form1
             // 
