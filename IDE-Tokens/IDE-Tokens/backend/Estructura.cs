@@ -147,7 +147,7 @@ namespace IDE_Tokens.backend
             tabla[10, 1] = "C"; tabla[10, 2] = "è";        tabla[10, 3] = "è_C´;";
 
             tabla[11, 1] = "C´"; tabla[11, 2] = "=";        tabla[11, 3] = "=K";
-            tabla[12, 1] = "C´"; tabla[12, 2] = ",";        tabla[12, 3] = ", _C´";
+            tabla[12, 1] = "C´"; tabla[12, 2] = ",";        tabla[12, 3] = ",_C´";
             tabla[13, 1] = "C´"; tabla[13, 2] = ";";        tabla[13, 3] = "e";
 
             tabla[14, 1] = "D"; tabla[14, 2] = "ê";   tabla[14, 3] = "ê(J);";
