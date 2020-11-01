@@ -15,14 +15,19 @@ namespace IDE_Tokens.backend
         private LinkedList<String> cadenaTokens = new LinkedList<string>();
         private LinkedList<String> automataPila = new LinkedList<string>();
 
+        private LinkedList<String> tokensArbol = new LinkedList<string>();
+
         private String[,] tabla = new String[cantCambiosMatriz, 4];
         private String estadoActual = "A";
+
 
         public Estructura(LinkedList<String> cadenaTokens)
         {
             this.cadenaTokens = new LinkedList<string> (cadenaTokens);
             matriz();
             automataPila.AddLast(estadoActual);
+            tokensArbol.AddLast(estadoActual);
+
             cantTokens = this.cadenaTokens.Count;
             verificarPila();
 
@@ -46,9 +51,12 @@ namespace IDE_Tokens.backend
                         if (tabla[i, 1].Equals(automataPila.Last.Value) && 
                             tabla[i, 2].Equals(cadenaTokens.First.Value))
                         {
+                            
+
                             automataPila.RemoveLast();
                             separarNodos(tabla[i, 3]);
                             cantTokens = cadenaTokens.Count;
+
                             break;
                         }
                         else
@@ -228,6 +236,10 @@ namespace IDE_Tokens.backend
             tabla[75, 1] = "M"; tabla[75, 2] = "=";          tabla[75, 3] = "=";
             tabla[76, 1] = "M"; tabla[76, 2] = "ì";  tabla[76, 3] = "e";
             tabla[77, 1] = "M"; tabla[77, 2] = "ì";      tabla[77, 3] = "e";
+        }
+        private void generarArbol()
+        {
+
         }
     }
 }

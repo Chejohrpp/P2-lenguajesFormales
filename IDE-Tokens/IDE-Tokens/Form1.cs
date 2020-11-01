@@ -59,7 +59,7 @@ namespace IDE_Tokens
                 automata.cambiarEstado(caracter, txtEditor, i);                
             }
 
-            resul = automata.getCadenaTokens();
+            resul = automata.getResult();
             if (resul.Count == 0)
             {
                 listaResult.Items.Add("No hay problemas");
@@ -75,10 +75,15 @@ namespace IDE_Tokens
             {
                 listSintactico.Items.Add("No hay problemas");
             }
-            foreach (String respuestas in resulTokens)
+            else
             {
-                listSintactico.Items.Add(respuestas);
+                listSintactico.Items.Add("Hay errores");
+
             }
+            //foreach (String respuestas in resulTokens)
+            //{
+            //    listSintactico.Items.Add(respuestas);
+            //}
 
             
 
