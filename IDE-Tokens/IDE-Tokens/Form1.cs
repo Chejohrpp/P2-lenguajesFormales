@@ -61,25 +61,25 @@ namespace IDE_Tokens
                 automata.cambiarEstado(caracter, txtEditor, i);                
             }
 
-            //resul = automata.getResult();
-            //if (resul.Count == 0)
-            //{
-            //    listaResult.Items.Add("No hay problemas");
-            //}
-            //foreach (String respuestas in resul)
-            //{
-            //    listaResult.Items.Add(respuestas);
-            //}
+            resul = automata.getResult();
+            if (resul.Count == 0)
+            {
+                listaResult.Items.Add("No hay problemas");
+            }
+            foreach (String respuestas in resul)
+            {
+                listaResult.Items.Add(respuestas);
+            }
 
             codigoArbol = automata.CodigoArbol();
-            try
-            {
-                listaResult.Items.Add(codigoArbol);
-            }
-            catch (Exception e)
-            {
+            //try
+            //{
+            //    listaResult.Items.Add(codigoArbol);
+            //}
+            //catch (Exception e)
+            //{
 
-            }
+            //}
             
 
             resulTokens = automata.getResultEstructura();
