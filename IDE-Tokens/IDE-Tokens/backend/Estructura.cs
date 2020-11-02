@@ -18,6 +18,7 @@ namespace IDE_Tokens.backend
 
         private LinkedList<String> tokensArbol = new LinkedList<string>();
         private LinkedList<String> tokensArbolAnterior = new LinkedList<string>();//se guardan los tokens de un nivel atras
+        private LinkedList<String> posTokenToken = new LinkedList<string>();
         private int posTokenCambiar = 1; //sirve para conocer la posicion de la hoja en el arbol
         String hojasArbol = null;
         String todasHojas = null;
@@ -272,25 +273,34 @@ namespace IDE_Tokens.backend
             tabla[76, 1] = "M"; tabla[76, 2] = "ì";  tabla[76, 3] = "e";
             tabla[77, 1] = "M"; tabla[77, 2] = "ì";      tabla[77, 3] = "e";
         }
+
+        private int tokenRaiz = 0;
         private void generarArbol()
         {
             try
             {
                 if (tokensArbolAnterior.Count != 0)
                 {
-                    String crearHoja = posTokenCambiar + " [label=\" " + tokensArbolAnterior.Last.Value + " \"]; ";
-                    todasHojas = todasHojas + crearHoja;
+                    if (buscarCaracter())
+                    {
+                        tokenRaiz = posTokenCambiar;
+                        String crearHoja = tokenRaiz + " [label=\" " + tokensArbolAnterior.Last.Value + " \"]; ";
+                        posTokenToken.AddFirst(tokenRaiz + "-" + tokensArbolAnterior.Last.Value);
+                        todasHojas = todasHojas + crearHoja;
+                    }                    
+
                     int cont = 1;
                     foreach (String token in tokensArbol.Reverse())
                     {
-                        crearHoja = posTokenCambiar + cont + " [label=\" " + token + " \" ]; ";
+                        String crearHoja = posTokenCambiar + cont + " [label=\" " + token + " \" ]; ";
+                        posTokenToken.AddFirst((posTokenCambiar+cont) + "-" + token);
                         todasHojas = todasHojas + crearHoja;
                         cont++;
                     }
 
                     for (int i = 0; i < tokensArbol.Count; i++)
                     {
-                        String apuntarHojas = posTokenCambiar + " -> " + (posTokenCambiar + 1 + i) + "; ";
+                        String apuntarHojas = tokenRaiz + " -> " + (posTokenCambiar + 1 + i) + "; ";
                         todasApuntarHojas = todasApuntarHojas + apuntarHojas;
                     }
                     posTokenCambiar += tokensArbol.Count + 1;//+1 puede cambiar
@@ -306,6 +316,25 @@ namespace IDE_Tokens.backend
             }
             
             
+        }
+        private Boolean buscarCaracter()
+        {
+
+            foreach (String token in posTokenToken)
+            {
+                String[] tokenSeparado = token.Split('-');
+
+                //Console.WriteLine(tokenSeparado[0] + "-" + tokenSeparado[1]);
+
+                if (tokensArbolAnterior.Last.Value.Equals(tokenSeparado[1]))
+                {
+                    tokenRaiz = Int32.Parse(tokenSeparado[0]);
+                    return false;
+                }
+
+            }
+
+            return true;
         }
         public String codigoArbol()
         {
