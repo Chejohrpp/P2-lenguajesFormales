@@ -33,7 +33,7 @@ namespace IDE_Tokens.backend
             this.cadenaTokens = new LinkedList<string> (cadenaTokens);
             matriz();
             automataPila.AddLast(estadoActual);
-            tokensArbolAnterior.AddLast(estadoActual);
+            //tokensArbolAnterior.AddLast(estadoActual);
             cantTokens = this.cadenaTokens.Count;
             verificarPila();
 
@@ -47,17 +47,17 @@ namespace IDE_Tokens.backend
                 {
                     cadenaTokens.RemoveFirst();
                     automataPila.RemoveLast();
-                    try
-                    {
-                        if (tokensArbolAnterior.Count != 0)
-                        {
-                            tokensArbolAnterior.RemoveLast();//para generar el arbol
-                        }                        
-                    }
-                    catch(Exception e)
-                    {
-                        Console.WriteLine(e.Message +" posible null en tokedndsArbolAnterior");
-                    }                    
+                    //try
+                    //{
+                    //    if (tokensArbolAnterior.Count != 0)
+                    //    {
+                    //        tokensArbolAnterior.RemoveLast();//para generar el arbol
+                    //    }                        
+                    //}
+                    //catch(Exception e)
+                    //{
+                    //    Console.WriteLine(e.Message +" posible null en tokedndsArbolAnterior");
+                    //}                    
                     cantTokens = cadenaTokens.Count;
                     posTokenCambiar++;//para cambiar el num de los tokens
                     verificarPila();
@@ -69,10 +69,10 @@ namespace IDE_Tokens.backend
                         if (tabla[i, 1].Equals(automataPila.Last.Value) && 
                             tabla[i, 2].Equals(cadenaTokens.First.Value))
                         {
-                            
+                            String tokeRaizEvaluar = automataPila.Last.Value;
                             automataPila.RemoveLast();
                             separarNodos(tabla[i, 3]);
-                            generarArbol();
+                            generarArbol(tokeRaizEvaluar);
                             cantTokens = cadenaTokens.Count;
 
                             break;
@@ -146,10 +146,7 @@ namespace IDE_Tokens.backend
 
         private void errores()
         {
-            if (automataPila.Count == 0)
-            {
-
-            }
+            
         }
         public LinkedList<String> getResultErrores()
         {
@@ -275,17 +272,17 @@ namespace IDE_Tokens.backend
         }
 
         private int tokenRaiz = 0;
-        private void generarArbol()
+        private void generarArbol(String tokenRaizEvaluar)
         {
             try
             {
-                if (tokensArbolAnterior.Count != 0)
-                {
-                    if (buscarCaracter())
+                //if (tokensArbolAnterior.Count != 0)
+                //{
+                    if (buscarCaracter(tokenRaizEvaluar))
                     {
                         tokenRaiz = posTokenCambiar;
-                        String crearHoja = tokenRaiz + " [label=\" " + tokensArbolAnterior.Last.Value + " \"]; ";
-                        posTokenToken.AddFirst(tokenRaiz + "-" + tokensArbolAnterior.Last.Value);
+                        String crearHoja = tokenRaiz + " [label=\" " + tokenRaizEvaluar /*tokensArbolAnterior.Last.Value*/ + " \"]; ";
+                        posTokenToken.AddFirst(tokenRaiz + "-" + tokenRaizEvaluar  /*tokensArbolAnterior.Last.Value*/);
                         todasHojas = todasHojas + crearHoja;
                     }                    
 
@@ -305,9 +302,9 @@ namespace IDE_Tokens.backend
                     }
                     posTokenCambiar += tokensArbol.Count + 1;//+1 puede cambiar
 
-                    tokensArbolAnterior = new LinkedList<string>(tokensArbol);
+                    //tokensArbolAnterior = new LinkedList<string>(tokensArbol);
                     tokensArbol.Clear();
-                }
+                //}
                 
             }
             catch(Exception e)
@@ -317,16 +314,16 @@ namespace IDE_Tokens.backend
             
             
         }
-        private Boolean buscarCaracter()
+        private Boolean buscarCaracter(String tokenRaizEvaluar)
         {
 
             foreach (String token in posTokenToken)
             {
                 String[] tokenSeparado = token.Split('-');
 
-                //Console.WriteLine(tokenSeparado[0] + "-" + tokenSeparado[1]);
+                Console.WriteLine(tokenSeparado[0] + "-" + tokenSeparado[1]);
 
-                if (tokensArbolAnterior.Last.Value.Equals(tokenSeparado[1]))
+                if (tokenRaizEvaluar.Equals(tokenSeparado[1]))
                 {
                     tokenRaiz = Int32.Parse(tokenSeparado[0]);
                     return false;
